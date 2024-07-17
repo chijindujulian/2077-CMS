@@ -35,13 +35,13 @@ Before running the application, ensure you have the following:
     myenv\Scripts\activate
     ```
 
-1. Install dependencies for the project:
+3. Install dependencies for the project:
 
    ```bash
     pip3 install -r requirements.txt
    ```
 
-2. Setup Environment Variables:
+4. Setup Environment Variables:
 
    Create a .env file in the root directory with the following variables:
 
@@ -50,7 +50,7 @@ Before running the application, ensure you have the following:
    NOTION_DATABASE_ID=<database id here>
    ```
 
-3. Run the application in development mode:
+5. Run the application in development mode:
 
    - Start Backend server:
 
@@ -61,7 +61,7 @@ Before running the application, ensure you have the following:
 
    ```
 
-4. API Testing: `http://127.0.0.1:8000/<ROUTE>`
+6. API Testing: `http://127.0.0.1:8000/<ROUTE>`
 
    | Method |   Route   |    Description     |
    | :----: | :-------: | :----------------: |
