@@ -1,19 +1,47 @@
-<div class="card mb-4 shadow">
-  <img
-    src="{{ blog_post.cover_image.url }}"
-    alt="Blog Post Cover Image"
-    class="card-img-top"
-  />
-  <div class="card-body">
-    <h5 class="card-title">{{ blog_post.title }}</h5>
-    <p class="card-text">{{ blog_post.sub_header }}</p>
-    <p class="card-text text-muted">
-      Published on: {{ blog_post.published_date }}
-    </p>
-    <a
-      href="{% url 'blog_post_detail' blog_post.slug %}"
-      class="btn btn-primary"
-      >Read Post</a
-    >
-  </div>
-</div>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Card</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+  </head>
+  <body>
+    <h1>Blog Card</h1>
+    <div class="card-container">
+      {% for result in data_to_render %}
+      <div class="card-wrapper">
+        <article class="card">
+          <div class="card__header">
+            <div>
+              <img
+                src="../static/images/img.webp"
+                alt="cover image"
+                class="card__image"
+              />
+            </div>
+          </div>
+
+          <h2 class="card__author">
+            {{ result.properties.Author.multi_select.0.name }}
+          </h2>
+
+          <div class="card__content">
+            <h3 class="card__title">
+              {{ result.properties|get:'Content
+              Title'|get:'title'|get:'0'|get:'plain_text' }}
+            </h3>
+          </div>
+
+          <p>{{ result.created_time }}</p>
+
+          <div class="card__footer">
+            <a href="{{ result.url }}" class="card__btn">Read More</a>
+          </div>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

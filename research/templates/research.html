@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,19 +9,20 @@
   <body>
     <header>
       <h1>2077 Research Page</h1>
-    <p>
-      Deep dives and technical analyses on Ethereum infrastructure, protocols, and applications.
-    </p>
+      <p>
+        Deep dives and technical analyses on Ethereum infrastructure, protocols,
+        and applications.
+      </p>
     </header>
     <section>
       <div class="row">
-        {% for blog_post in blog_posts %}
-          <div class="col-md-4">
-            {% include 'blogPostCard.html' with blog_post=blog_post %}
-          </div>
+        {% for result in data_to_render %}
+        <div class="col-md-4">
+          {% include 'blogPostCard.html' %} {{
+          result.properties.Author.multi_select.0.name }}
+        </div>
         {% endfor %}
       </div>
     </section>
-    
   </body>
 </html>
