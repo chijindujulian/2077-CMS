@@ -1,8 +1,11 @@
 from django.urls import path
-from . import views
+from .views import ArticleListCreate, index, blog
+
+
 
 # Define the URL patterns for the research app
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('research/', views.researchPage, name='research'),
+    path('', index, name='index'),
+    path('blog/', blog, name='blog'),
+    path('research/', ArticleListCreate.as_view(), name='article-list-create'),
     ]
