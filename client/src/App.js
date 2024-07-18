@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ArticleList from "./components/ArticleList";
+import ArticleDetail from "./components/ArticleDetail";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          2077 Collective
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <header></header>
+        <Routes>
+          <Route path="/" element={<ArticleList />} />
+          <Route path="/articles/:id" element={<ArticleDetail />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
