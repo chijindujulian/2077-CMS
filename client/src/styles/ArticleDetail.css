@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  background-color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.article {
+  display: flex;
+  justify-content: center;
+  margin: 4% 10%;
+  text-align: justify;
+  flex-wrap: wrap;
+}
+
+.article .paragraph {
+  margin: 2% 0%;
+}
+
+.article-cont h4 {
+    color: rgb(80, 169, 229);
+    margin: 2% 0%;
+  }

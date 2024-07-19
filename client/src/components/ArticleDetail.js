@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import "../styles/ArticleDetail.css";
 
 function ArticleDetail() {
   const { id } = useParams();
@@ -18,14 +19,24 @@ function ArticleDetail() {
   }, [id]);
   return (
     <div>
-      {article ? (
-        <div>
-          <h1>{article.title}</h1>
-          <p>{article.content}</p>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <div className="article">
+        {article ? (
+          <div className="article-cont">
+            <h1>{article.title}</h1>
+            <h4>
+              <span>Author: {article.author}</span>
+              <span> | Views: {article.views}</span>
+            </h4>
+            <h4>Category: {article.category}</h4>
+
+            <h4>Published: {article.created_at}</h4>
+            <br />
+            <p className="paragraph">{article.content}</p>
+          </div>
+        ) : ( 
+          <p>Loading...</p>
+        )}
+      </div>
     </div>
   );
 }

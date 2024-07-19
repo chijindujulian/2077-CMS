@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "../styles/ArticleList.css";
 
 function ArticleList() {
   const [articles, setArticles] = useState([]);
@@ -17,20 +18,28 @@ function ArticleList() {
   }, []);
   return (
     <div>
-      <h1>Articles</h1>
-      {articles.map((article) => (
-        <div key={article.id}>
-          <h2>{article.title}</h2>
-          <p>Author: {article.author}</p>
-          <p>Category: {article.category}</p>
-          <p>Published: {article.created_at}</p>
-          <p>Views: {article.views}</p>
-          <p>{article.content}</p>
-          <h3>
-            <Link to={`/articles/${article.id}`}>READ MORE</Link>
-          </h3>
-        </div>
-      ))}
+      <h1 className="article-head">Articles</h1>
+      <div className="articles">
+        {articles.map((article) => (
+          <div className="article-card" key={article.id}>
+            <h2>{article.title}</h2>
+
+            <h4>
+              <span>Author: {article.author}</span>
+              <span> | Views: {article.views}</span>
+            </h4>
+            <h4>Category: {article.category}</h4>
+
+            <h4>Published: {article.created_at}</h4>
+            <br />
+            <p>{article.summary}</p>
+
+            <button className="article-card-bttn">
+              <Link to={`/articles/${article.id}`}>READ MORE&rarr;</Link>
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
