@@ -1,13 +1,14 @@
 # 2077cms
 
-Content management system written in Python(Django)
+Content management system written in Python(Django) and React.js
 
 ## Prerequisites
 
 Before running the application, ensure you have the following:
 
-- Notion for database
 - Git (for version control)
+- Node.js runtime environment
+- Python3 and pip3
 
 ## Running the App
 
@@ -21,19 +22,19 @@ Before running the application, ensure you have the following:
 2. Create virtual environment
 
 - For MacOS,
-  
-    ```bash
-    python3 -m venv .venv
-    source .venv/bin/activate
-    ```
+
+  ```bash
+  python3 -m venv .venv
+  source .venv/bin/activate
+  ```
 
 - For Windows,
-  
-    ```bash
-    pip3 install virtualenv
-    virtualenv myenv
-    myenv\Scripts\activate
-    ```
+
+  ```bash
+  pip3 install virtualenv
+  virtualenv myenv
+  myenv\Scripts\activate
+  ```
 
 3. Install dependencies for the project:
 
@@ -45,27 +46,64 @@ Before running the application, ensure you have the following:
 
    Create a .env file in the root directory with the following variables:
 
-   ```
-   NOTION_TOKEN=<secret token here>
-   NOTION_DATABASE_ID=<database id here>
-   ```
-
 5. Run the application in development mode:
 
-   - Start Backend server:
+- Start API server:
 
-   ```bash
-    python3 manage.py makemigrations # To compile the migrations
-    python3 manage.py migrate  # To migrate the changes in Database
-    python3 manage.py runserver # To run the server
+  ```bash
+  python3 manage.py makemigrations # To compile the migrations
+  python3 manage.py migrate  # To migrate the changes in Database
+  python3 manage.py runserver # To run the API server
+  ```
 
-   ```
+- Start Client server:
 
-6. API Testing: `http://127.0.0.1:8000/<ROUTE>`
+  ```bash
+  cd client # enter the client directory
+  npm install
+  npm install react-scripts@latest --legacy-peer-deps #to resolve dependency issues
+  npm run build
+  npm start # To run the the client server
+  ```
 
-   | Method |   Route   |    Description     |
-   | :----: | :-------: | :----------------: |
-   |  GET   |     /     |   2077 main page   |
-   |  GET   | /research | research blog page |
+6. API Testing: `http://127.0.0.1:8000/api/<ROUTE>`
+
+   | Method |       Route       |     Description     |
+   | :----: | :---------------: | :-----------------: |
+   |  GET   |     articles/     |  List all articles  |
+   |  POST  |     articles/     |   Add an article    |
+   |  GET   | articles/<int:pk> | Retrieve an article |
+   | PATCH  | articles/<int:pk> |  Update an article  |
+   | DELETE | articles/<int:pk> |  Delete an article  |
+
+7. Client Testing: `http://localhost:3000/<ROUTE>`
+
+   | Method |       Route       |     Description     |
+   | :----: | :---------------: | :-----------------: |
+   |  GET   |         /         |  List all articles  |
+   |  GET   | articles/<int:pk> | Retrieve an article |
+
+8. Contributing
+
+   ### Code Style
+
+   - Follow PEP 8 for Python code
+
+   ### Pull Request Process
+
+   - Create a new branch for your feature or fix
+   - Submit a pull request with a clear description
+
+## License and Credits
+
+- Licensed under the MIT License
+- Uses third-party libraries: Django, React, etc.
+
+## Troubleshooting
+
+### Common Errors
+
+- "Module not found" error: Check your dependencies and installation
+- "React-Scripts Dependencies error" : Install using `--legacy-peer-deps`
 
 Working in Progress...stay tuned
