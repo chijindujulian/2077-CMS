@@ -8,11 +8,12 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title', 'author', 'views', 'category', 'created_at')  # Customize as needed
     readonly_fields = ('views', 'author', 'slug')  # Make 'views' read-only
     
-    
+    # override TextFields with CKEditorWidget
     formfield_overrides = {
         models.TextField: {'widget': CKEditorWidget},
     }
     
+    # Override save_model to automatically set author to the logged-in user
     def save_model(self, request, obj, form, change):
         if not change:  # If creating a new article
             obj.author = request.user  # Automatically set author to the logged-in user
