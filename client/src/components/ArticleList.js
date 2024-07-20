@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/ArticleList.css";
+import DOMPurify from "dompurify";
+import formatDate from "./DateTimeFormatter";
 
 function ArticleList() {
   const [articles, setArticles] = useState([]);
@@ -16,6 +18,7 @@ function ArticleList() {
         console.log("Error fetching article: ", err);
       });
   }, []);
+
   return (
     <div>
       <h1 className="article-head">Articles</h1>
@@ -30,9 +33,14 @@ function ArticleList() {
             </h4>
             <h4>Category: {article.category}</h4>
 
-            <h4>Published: {article.created_at}</h4>
+            <h4>{formatDate(article.created_at)}</h4>
             <br />
-            <p>{article.summary}</p>
+            <p
+              className="summary"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(article.summary), // Sanitize the HTML to avoid XSS attacks
+              }}
+            />
 
             <button className="article-card-bttn">
               <Link to={`/articles/${article.id}`}>READ MORE&rarr;</Link>
