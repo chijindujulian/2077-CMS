@@ -8,4 +8,6 @@ db.json
 blocks.json
 data.json
 notion.py
+vpsSetup.md
 
+.DS_Store
