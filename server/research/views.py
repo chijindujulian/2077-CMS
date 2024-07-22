@@ -6,14 +6,17 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 
+
+
 """ def index(request):
     return render(request, 'index.html')
 
 def blog(request):
     return render(request, 'output.html')
  """
+# renders only the articles with status 'ready'
 class ArticleListCreate(generics.ListCreateAPIView):
-    queryset = Article.objects.all()
+    queryset = Article.postobjects.all()
     serializer_class = ArticleSerializer
 
 class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):

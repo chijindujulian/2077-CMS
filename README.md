@@ -1,4 +1,5 @@
 ![](./2077.webp)
+
 # 2077 Collective
 
 Content management system written in Python(Django) and React.js
@@ -25,6 +26,7 @@ Before running the application, ensure you have the following:
 - For MacOS,
 
   ```bash
+  cd server # enter the server directory
   python3 -m venv .venv
   source .venv/bin/activate
   ```
@@ -32,6 +34,7 @@ Before running the application, ensure you have the following:
 - For Windows,
 
   ```bash
+  cd server # enter the server directory
   pip3 install virtualenv
   virtualenv myenv
   myenv\Scripts\activate
@@ -49,7 +52,7 @@ Before running the application, ensure you have the following:
 
 5. Run the application in development mode:
 
-- Start API server:
+- Start Server:
 
   ```bash
   python3 manage.py makemigrations # To compile the migrations
@@ -57,7 +60,7 @@ Before running the application, ensure you have the following:
   python3 manage.py runserver # To run the API server
   ```
 
-- Start Client server:
+- Start Client:
 
   ```bash
   cd client # enter the client directory
