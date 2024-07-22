@@ -88,7 +88,8 @@ Before running the application, ensure you have the following:
    |  GET   | articles/<int:pk> | Retrieve an article |
 
 8. Contributing
-
+   
+If you want to contribute to this project, please read the [contribution guide](./CONTRIBUTING.md).
    ### Code Style
 
    - Follow PEP 8 for Python code
