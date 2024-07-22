@@ -24,6 +24,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('research.urls')),
     path('api/', include('research.urls')),
     #re_path(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$', serve),
     #re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),
