@@ -84,20 +84,23 @@ Before running the application, ensure you have the following:
 
    | Method |       Route       |     Description     |
    | :----: | :---------------: | :-----------------: |
-   |  GET   |         /         |  List all articles  |
+   |  GET   | articles/         |  List all articles  |
    |  GET   | articles/<int:pk> | Retrieve an article |
 
-8. Contributing
-   
+8. Model Testing: run `python manage.py test`
+
+9. Contributing
+
 If you want to contribute to this project, please read the [contribution guide](./CONTRIBUTING.md).
-   ### Code Style
 
-   - Follow PEP 8 for Python code
+### Code Style
 
-   ### Pull Request Process
+- Follow PEP 8 for Python code
 
-   - Create a new branch for your feature or fix
-   - Submit a pull request with a clear description
+### Pull Request Process
+
+- Create a new branch for your feature or fix
+- Submit a pull request with a clear description
 
 ## License and Credits
 
