@@ -16,18 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-#from django.views.generic import TemplateView
-#from django.views.static import serve
-from research.views import ArticleListCreate, ArticleDetail
-from rest_framework.urlpatterns import format_suffix_patterns
-
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('research.urls')),
     path('api/', include('research.urls')),
-    #re_path(r'^(?!/?static/)(?!/?media/)(?P<path>.*\..*)$', serve),
-    #re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),
 ]
 
-urlpatterns = format_suffix_patterns(urlpatterns)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

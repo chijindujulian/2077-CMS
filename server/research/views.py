@@ -1,31 +1,23 @@
-from rest_framework import generics
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+from django.db.models import F
 from .models import Article
 from .serializers import ArticleSerializer
-from django.http import JsonResponse
-from django.shortcuts import render, get_object_or_404
-from django.views.decorators.http import require_POST
-from django.views.decorators.csrf import csrf_exempt
-
-
+from django.shortcuts import render
 
 def index(request):
     return render(request, 'index.html')
-
-# renders only the articles with status 'ready'
-class ArticleListCreate(generics.ListCreateAPIView):
-    queryset = Article.postobjects.all()
+class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
 
-class ArticleDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Article.objects.all()
-    serializer_class = ArticleSerializer
-    
+    def get_queryset(self):
+        return Article.objects.filter(status='ready')
 
-# Increment views for an article
-@csrf_exempt
-@require_POST
-def increment_view(request, pk):
-    article = get_object_or_404(Article, pk=pk)
-    article.views += 1
-    article.save()
-    return JsonResponse({'views': article.views})
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.views = F('views') + 1
+        instance.save(update_fields=['views'])
+        # Refresh the instance to get the updated views value
+        instance.refresh_from_db(fields=['views'])
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)

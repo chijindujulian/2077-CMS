@@ -1,12 +1,12 @@
-from django.urls import path
-from .views import index, ArticleListCreate, ArticleDetail, increment_view
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import ArticleViewSet, index
 
+router = DefaultRouter()
+router.register(r'articles', ArticleViewSet, basename='article')
 
-
-# Define the URL patterns for the research app
 urlpatterns = [
-    path('', index, name='index'),
-    path('articles/', ArticleListCreate.as_view(), name='article-list-create'),
-    path('articles/<int:pk>/', ArticleDetail.as_view(), name='article'),
-    path('articles/<int:pk>/increment-views/', increment_view, name='increment_view'), # Increment views for an article
-    ]
+    path('', index, name='index'),  
+    path('api/', include(router.urls)),
+]
+
