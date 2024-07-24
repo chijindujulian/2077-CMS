@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django_ckeditor_5.fields import CKEditor5Field
 
 class Article(models.Model):
 
@@ -14,7 +15,7 @@ class Article(models.Model):
     )
 
     title = models.CharField(max_length=100)
-    content = models.TextField()
+    content = CKEditor5Field(null=True, blank=True, config_name='extends')
     summary = models.TextField(blank=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     slug = models.SlugField(blank=True)

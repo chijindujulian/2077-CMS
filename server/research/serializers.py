@@ -3,6 +3,8 @@ from .models import Article
 
 class ArticleSerializer(serializers.ModelSerializer):
     author = serializers.ReadOnlyField(source='author.username')
+    slug = serializers.ReadOnlyField()
+    views = serializers.ReadOnlyField()
     class Meta:
         model = Article
-        fields = ['id', 'title', 'author', 'thumb', 'content', 'summary', 'slug', 'created_at', 'category', 'status', 'views']
+        fields = '__all__'

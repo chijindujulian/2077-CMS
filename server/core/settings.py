@@ -37,19 +37,63 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    
+    # Custom Apps
     'research',
-    'corsheaders',  
-    'ckeditor',
-    'ckeditor_uploader',  
+    'corsheaders',
+    
+    # Third Party Apps  
+    'ckeditor_uploader', 
+    'django_ckeditor_5',
     ]
 CKEDITOR_UPLOAD_PATH = "images/ckeditor_uploads/"
-
-CKEDITOR_CONFIGS = {
+CKEDITOR_IMAGE_BACKEND = "pillow"
+customColorPalette = [
+        {
+            'color': 'hsl(4, 90%, 58%)',
+            'label': 'Red'
+        },
+        {
+            'color': 'hsl(340, 82%, 52%)',
+            'label': 'Pink'
+        },
+        {
+            'color': 'hsl(291, 64%, 42%)',
+            'label': 'Purple'
+        },
+        {
+            'color': 'hsl(262, 52%, 47%)',
+            'label': 'Deep Purple'
+        },
+        {
+            'color': 'hsl(231, 48%, 48%)',
+            'label': 'Indigo'
+        },
+        {
+            'color': 'hsl(207, 90%, 54%)',
+            'label': 'Blue'
+        },
+    ]
+CKEDITOR_5_CONFIGS = {
     'default': {
-        'toolbar': 'full',
-        'height': 300,
-        'width': 'auto',
+        'toolbar': ['heading', '|', 'bold', 'italic', 'underline', 'strikethrough','link', '|', 'fontsize', 'fontfamily', 'fontColor', 'fontBackgroundColor', '|', 'alignment', 'outdent', 'indent', 'linespacing','|',
+                    'bulletedList', 'numberedList',  'findAndReplace','highlight',  'subscript', 'superscript', 'specialCharacters', '|' , 'imageInsert', 'code', 'codeBlock', 'insertTable', 'mediaEmbed', '|', 'undo', 'redo', '|',  'blockQuote'],
+        'image': {
+            'toolbar': ['imageTextAlternative', '|', 'imageStyle:alignLeft',
+                        'imageStyle:alignRight', 'imageStyle:alignCenter', 'imageStyle:side' , 'imageResize', '|'],
+            
+
+        },
+
     },
+    'extends': { },
+    'list': {
+        'properties': {
+            'styles': 'true',
+            'startIndex': 'true',
+            'reversed': 'true',
+        }
+    }
 }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -64,9 +108,14 @@ MIDDLEWARE = [
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ]
 }
+# Possible Permissions to explore based on use case
+# 'rest_framework.permissions.AllowAny',
+# 'rest_framework.permissions.IsAuthenticated',
+# 'rest_framework.permissions.IsAdminUser',
+# 'rest_framework.permissions.IsAuthenticatedOrReadOnly',
 
 CORS_ALLOWED_ORIGINS = [    
     "http://localhost:3000",
