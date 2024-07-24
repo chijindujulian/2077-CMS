@@ -1,0 +1,16 @@
+/* src/styles/styles.css */
+
+.content img {
+  max-width: 100%; /* Ensure images do not exceed the width of their container */
+  height: auto; /* Maintain aspect ratio */
+  display: block; /* Ensure images behave like block elements */
+  margin: 0 auto; /* Center the image */
+}
+
+.content figure {
+  margin: 0; /* Remove default margin from figures */
+}
+
+.content figure img {
+  margin: 0; /* Remove any extra margin on the image */
+}

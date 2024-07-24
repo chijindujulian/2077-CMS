@@ -12,6 +12,9 @@ import {
 } from "@mui/material";
 import DOMPurify from "dompurify";
 import formatDate from "./DateTimeFormatter";
+import "../styles/styles.css";
+
+const backendBaseUrl = "http://127.0.0.1:8000"; // Backend URL
 
 function ArticleDetail() {
   const { id } = useParams();
@@ -21,9 +24,29 @@ function ArticleDetail() {
     const fetchArticle = async () => {
       try {
         const response = await axios.get(
-          `http://127.0.0.1:8000/api/articles/${id}/`
+          `${backendBaseUrl}/api/articles/${id}/`
         );
-        setArticle(response.data);
+        const data = response.data;
+
+        // Clean up unwanted HTML tags
+        const cleanedContent = data.content.replace(/<p>&nbsp;<\/p>/g, '');
+
+        // Replace image URLs in content
+        const updatedContent = cleanedContent.replace(
+          /src="\/media\//g,
+          `src="${backendBaseUrl}/media/`
+        );
+
+        // Ensure thumb URL is correctly formatted
+        const updatedThumb = data.thumb
+          ? `${data.thumb}`
+          : "/static/images/cards/contemplative-reptile.jpg";
+
+        setArticle({
+          ...data,
+          content: updatedContent, // Replace content with updated image URLs and cleaned HTML
+          thumb: updatedThumb, // Ensure thumb path is correct
+        });
       } catch (err) {
         console.log("Error fetching article: ", err);
       }
@@ -40,22 +63,22 @@ function ArticleDetail() {
             component="img"
             alt={article.title}
             height="240"
-            image={
-              article.thumb || "/static/images/cards/contemplative-reptile.jpg"
-            }
+            image={article.thumb} // Correctly formatted thumb URL
           />
           <CardContent>
             <Typography variant="h4">{article.title}</Typography>
-            <Typography variant="h6">
-              Author: {article.author}
-            </Typography>
+            <Typography variant="h6">Author: {article.author}</Typography>
             <Typography variant="h6">
               {formatDate(article.created_at)}
             </Typography>
             <Box mt={2}>
               <div
+                className="content"
                 dangerouslySetInnerHTML={{
                   __html: DOMPurify.sanitize(article.content),
+                }}
+                style={{
+                  maxWidth: "100%", // Ensure content width does not exceed container
                 }}
               />
             </Box>

@@ -12,15 +12,16 @@ import {
   CardMedia,
   Box,
 } from "@mui/material";
-import DOMPurify from "dompurify";
 import formatDate from "./DateTimeFormatter";
+
+const backendBaseUrl = "http://127.0.0.1:8000"; //backend URL
 
 function ArticleList() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/articles/")
+      .get(`${backendBaseUrl}/api/articles/`)
       .then((res) => {
         setArticles(res.data);
       })
@@ -41,7 +42,9 @@ function ArticleList() {
       <Grid container spacing={4}>
         {articles.map((article) => (
           <Grid item xs={12} sm={6} md={4} key={article.id}>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card
+              sx={{ maxWidth: 345, display: "flex", flexDirection: "column" }}
+            >
               <CardMedia
                 component="img"
                 alt={article.title}
@@ -50,19 +53,21 @@ function ArticleList() {
                   article.thumb ||
                   "/static/images/cards/contemplative-reptile.jpg"
                 }
+                sx={{ objectFit: "cover" }} // Ensures image covers the space without distortion
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+              <CardContent sx={{ flexGrow: 1 }}>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                  style={{ textTransform: "uppercase" }}
+                >
                   {article.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(article.summary),
-                    }}
-                  />
+                <Typography variant="body1" color="text.primary" sx={{ mb: 2 }}>
+                  {article.summary}
                 </Typography>
-
+                <Box mb={2} /> {/* Margin bottom for spacing */}
                 <Typography variant="body2" color="text.secondary">
                   Author: {article.author}
                 </Typography>
@@ -80,7 +85,7 @@ function ArticleList() {
                   size="small"
                   variant="contained"
                 >
-                  Read More
+                  Read More &#10162;
                 </Button>
               </CardActions>
             </Card>

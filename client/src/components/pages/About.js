@@ -49,7 +49,7 @@ const About = () => {
       </Typography>
       <Typography variant="body1" paragraph>
         Join our{" "}
-        <Link href="https://discord.gg/your-discord-link" color="primary">
+        <Link href="https://discord.com/invite/2077collective" target="_blank" color="primary">
           Discord server
         </Link>{" "}
         and contribute!
