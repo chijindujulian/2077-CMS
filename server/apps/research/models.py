@@ -1,14 +1,23 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.utils.text import slugify
 from django_ckeditor_5.fields import CKEditor5Field
 
-class Article(models.Model):
+from apps.common.models import BaseModel
+from apps.research.managers import ArticleObjects
 
-    class ArticleObjects(models.Manager):
-        def get_queryset(self):
-            return super().get_queryset().filter(status='ready')
 
+class Category(BaseModel):
+    name = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.name
+
+
+class Article(BaseModel):
     options = (
         ('draft', 'Draft'),
         ('ready', 'Ready'),
@@ -19,13 +28,12 @@ class Article(models.Model):
     summary = models.TextField(blank=True)
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     slug = models.SlugField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    category = models.CharField(max_length=100, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="articles")
     thumb = models.ImageField(upload_to='images/', default='../media/images/2077-Collective.png', blank=True)
     views = models.PositiveBigIntegerField(default=0)
     status = models.CharField(max_length=10, choices=options, default='draft')
     objects = models.Manager()
-    postobjects = ArticleObjects()
+    post_objects = ArticleObjects()
 
     class Meta:
         ordering = ('-created_at',)
