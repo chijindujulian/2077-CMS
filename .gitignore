@@ -14,3 +14,4 @@ vpsSetup.md
 .DS_Store
 test.rest
 db.sqlite3
+old-backup-db.sqlite3
