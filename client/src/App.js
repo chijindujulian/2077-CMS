@@ -5,8 +5,8 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import ArticleList from "./components/ArticleList";
-import ArticleDetail from "./components/ArticleDetail";
+import ArticleList from "./components/ArticleList/ArticleList";
+import ArticleDetail from "./components/ArticleDetail/ArticleDetail";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { ThemeProviderComponent } from "./components/ThemeContext";

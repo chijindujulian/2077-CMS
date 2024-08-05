@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import {
   Container,
   Typography,
@@ -12,22 +11,16 @@ import {
   CardMedia,
   Box,
 } from "@mui/material";
-import formatDate from "./DateTimeFormatter";
-
-const backendBaseUrl = "http://127.0.0.1:8000"; //backend URL
+import formatDate from "../Utils/DateTimeFormatter";
+import { fetchArticles } from "./ArticleApi";
 
 function ArticleList() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`${backendBaseUrl}/api/articles/`)
-      .then((res) => {
-        setArticles(res.data);
-      })
-      .catch((err) => {
-        console.log("Error fetching article: ", err);
-      });
+    fetchArticles().then((data) => {
+      setArticles(data);
+    });
   }, []);
 
   return (

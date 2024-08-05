@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+
 import {
   Container,
   Typography,
@@ -10,49 +10,21 @@ import {
   CardContent,
   CardMedia,
 } from "@mui/material";
+import "../../styles/styles.css";
 import DOMPurify from "dompurify";
-import formatDate from "./DateTimeFormatter";
-import "../styles/styles.css";
-
-const backendBaseUrl = "http://127.0.0.1:8000"; // Backend URL
+import formatDate from "../Utils/DateTimeFormatter";
+import { fetchArticle } from "./ArticleApi";
+import { formatArticleData } from "./ArticleUtils";
 
 function ArticleDetail() {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
 
   useEffect(() => {
-    const fetchArticle = async () => {
-      try {
-        const response = await axios.get(
-          `${backendBaseUrl}/api/articles/${id}/`
-        );
-        const data = response.data;
-
-        // Clean up unwanted HTML tags
-        const cleanedContent = data.content.replace(/<p>&nbsp;<\/p>/g, '');
-
-        // Replace image URLs in content
-        const updatedContent = cleanedContent.replace(
-          /src="\/media\//g,
-          `src="${backendBaseUrl}/media/`
-        );
-
-        // Ensure thumb URL is correctly formatted
-        const updatedThumb = data.thumb
-          ? `${data.thumb}`
-          : "/static/images/cards/contemplative-reptile.jpg";
-
-        setArticle({
-          ...data,
-          content: updatedContent, // Replace content with updated image URLs and cleaned HTML
-          thumb: updatedThumb, // Ensure thumb path is correct
-        });
-      } catch (err) {
-        console.log("Error fetching article: ", err);
-      }
-    };
-
-    fetchArticle();
+    fetchArticle(id).then((data) => {
+      const formattedArticle = formatArticleData(data);
+      setArticle(formattedArticle);
+    });
   }, [id]);
 
   return (
