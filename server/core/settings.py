@@ -193,7 +193,7 @@ JAZZMIN_SETTINGS = {
     # Welcome text on the login screen
     "welcome_sign": "Welcome to the 2077 Collective Admin Section",
     # Copyright on the footer
-    "copyright": "2077 Collective Ltd 2024",
+    "copyright": "2077 Collective Ltd",
     # The model admin to search from the search bar, search bar omitted if excluded
     "search_model": [],
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
@@ -307,20 +307,37 @@ customColorPalette = [
 
 CKEDITOR_5_CONFIGS = {
     'default': {
-        'toolbar': ['heading', '|', 'bold', 'italic', 'underline', 'strikethrough', 'link', '|', 'fontsize',
+        'toolbar': ['undo', 'redo', '|', 'heading', '|', 'bold', 'italic', 'underline', 'strikethrough', 'link', 'horizontalLine', '|', 'fontsize',
                     'fontfamily', 'fontColor', 'fontBackgroundColor', '|', 'alignment', 'outdent', 'indent',
                     'linespacing', '|',
                     'bulletedList', 'numberedList', 'findAndReplace', 'highlight', 'subscript', 'superscript',
                     'specialCharacters', '|', 'imageInsert', 'code', 'codeBlock', 'insertTable', 'mediaEmbed', '|',
-                    'undo', 'redo', '|', 'blockQuote'],
+                     'blockQuote', 'fullscreen', 'removeFormat'],
+        
         'image': {
             'toolbar': ['imageTextAlternative', '|', 'imageStyle:alignLeft',
                         'imageStyle:alignRight', 'imageStyle:alignCenter', 'imageStyle:side', 'imageResize', '|'],
-
+            'styles': [
+                'full',
+                'side',
+                'alignLeft',
+                'alignRight',
+                'alignCenter',
+            ]
+        },'blockToolbar': {
+            'items': [
+                'paragraph', 'heading1', 'heading2', 'heading3',
+                '|',
+                'bulletedList', 'numberedList',
+                '|',
+                'blockQuote',
+            ],
+            'location': 'left',  # Position the block toolbar on the left
         },
-
     },
-    'extends': {},
+    'extends': {
+        
+    },
     'list': {
         'properties': {
             'styles': 'true',

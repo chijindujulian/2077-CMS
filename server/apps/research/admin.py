@@ -1,5 +1,6 @@
 from django.contrib import admin
-
+from django import forms
+from django_ckeditor_5.widgets import CKEditor5Widget
 from apps.research.models import Article, Category
 
 
@@ -18,7 +19,7 @@ class ArticleAdmin(admin.ModelAdmin):
     # Order in which fields are displayed in the admin panel
     fieldsets = [
         (
-            'Article Information', {
+            '2077 Collective Articles', {
                 'fields': [
                     'title',
                     'category',
@@ -30,6 +31,12 @@ class ArticleAdmin(admin.ModelAdmin):
             }
         ),
     ]
+    
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields['content'].widget = CKEditor5Widget(attrs={"class": "django_ckeditor_5"})
+        return form
+    
     list_display = ('title', 'author', 'status', 'views', 'category', 'created_at')
 
     search_fields = ('title', 'content', 'author__username')
