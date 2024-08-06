@@ -4,6 +4,10 @@
 
 Content management system written in Python(Django) and React.js
 
+## Project Architecture
+
+![architecture](./cms%202077%20architecture.webp)
+
 ## Prerequisites
 
 Before running the application, ensure you have the following:
