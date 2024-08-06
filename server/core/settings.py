@@ -84,9 +84,11 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:8000",
     "http://74.119.195.253:8000",
+    "http://cms.2077.xyz",
+    "https://cms.2077.xyz",
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://74.119.195.253']
+CSRF_TRUSTED_ORIGINS = ['http://74.119.195.253', 'http://cms.2077.xyz', 'https://cms.2077.xyz']
 
 ROOT_URLCONF = 'core.urls'
 
@@ -154,7 +156,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 

@@ -13,3 +13,5 @@ vpsSetup.md
 .DS_Store
 test.rest
 db.sqlite3
+staticfiles/
+nohup.out

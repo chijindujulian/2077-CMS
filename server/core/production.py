@@ -2,11 +2,13 @@ from .settings import *
 
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['74.119.195.253', 'cms.2077.xyz']
 
 CSRF_TRUSTED_ORIGINS = ["https://" + host for host in ALLOWED_HOSTS]
 
 REDISCLOUD_URL = config("REDISCLOUD_URL")
+
+STATIC_URL = 'staticfiles/'
 
 DATABASES = {
     'default': {
