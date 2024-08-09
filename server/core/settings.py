@@ -279,7 +279,7 @@ JAZZMIN_UI_TWEAKS = {
 }
 
 # CKEDITOR CONFIGS
-CKEDITOR_UPLOAD_PATH = "images/ckeditor_uploads/"
+CKEDITOR_UPLOAD_PATH = 'ckeditor_uploads/'
 
 CKEDITOR_IMAGE_BACKEND = "pillow"
 
@@ -320,6 +320,9 @@ CKEDITOR_5_CONFIGS = {
                      'blockQuote', 'fullscreen', 'removeFormat'],
         
         'image': {
+            'upload': {
+                'path': 'ckeditor_uploads/',
+            },
             'toolbar': ['imageTextAlternative', '|', 'imageStyle:alignLeft',
                         'imageStyle:alignRight', 'imageStyle:alignCenter', 'imageStyle:side', 'imageResize', '|'],
             'styles': [
@@ -328,8 +331,13 @@ CKEDITOR_5_CONFIGS = {
                 'alignLeft',
                 'alignRight',
                 'alignCenter',
-            ]
-        },'blockToolbar': {
+            ],
+            'resize': {
+                'enabled': False  # Disable image resizing
+            }
+        },
+
+        'blockToolbar': {
             'items': [
                 'paragraph', 'heading1', 'heading2', 'heading3',
                 '|',
@@ -339,7 +347,13 @@ CKEDITOR_5_CONFIGS = {
             ],
             'location': 'left',  # Position the block toolbar on the left
         },
+        'plugins': {
+            'imageInsert': {
+                'enabled': True
+            }
+        }
     },
+
     'extends': {
         
     },

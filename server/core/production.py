@@ -27,7 +27,7 @@ CSP_STYLE_SRC = ("self",)
 
 CSP_SCRIPT_SRC = ("self",)
 
-CSP_IMG_SRC = ("self",)
+CSP_IMG_SRC = ("self", "http://cms.2077.xyz", "https:cms.2077.xyz")
 
 CSP_FONT_SRC = ("self",)
 
