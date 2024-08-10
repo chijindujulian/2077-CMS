@@ -52,7 +52,21 @@ Before running the application, ensure you have the following:
 
 4. Setup Environment Variables:
 
-   Create a .env file in the root directory with the following variables:
+   Create a .env file in the root directory using the .env.example template and add all required variables:
+   ```env
+    DJANGO_SETTINGS_MODULE='core.config.local' #for Dev environment
+
+    # Sqlite3 database config
+    SECRET_KEY='paste db.sqlite3 key here'
+
+    # Production-Only Env Database config
+    # PostgreSql Credentials
+    DB_NAME=<enter database name>
+    DB_USER=<enter username>
+    DB_PASS=<enter password>
+    DB_HOST=localhost
+    DB_PORT=5432 
+   ```
 
 5. Run the application in development mode:
 

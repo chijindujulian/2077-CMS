@@ -1,2 +1,2 @@
-export const backendBaseUrl = "http://127.0.0.1:8000";
+export const backendBaseUrl = "http://cms.2077.xyz";
 export const apiUrl = `${backendBaseUrl}/api/articles/`;
