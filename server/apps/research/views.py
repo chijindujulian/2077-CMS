@@ -33,7 +33,7 @@ class ArticleViewSet(viewsets.ModelViewSet):
         return Article.objects.filter(status='ready')
 
     # Custom action to retrieve articles by slug or UUID
-    @action(detail=False, methods=['get'], url_path='(?P<identifier>[-\w0-9a-fA-F]+)')
+    @action(detail=False, methods=['get'], url_path=r'(?P<identifier>[-\w0-9a-fA-F]+)')
     def retrieve_by_identifier(self, request, identifier=None):
         """Retrieve an article by slug or UUID."""
         try:
