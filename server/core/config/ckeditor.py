@@ -38,6 +38,7 @@ CKEDITOR_5_CONFIGS = {
                     'bulletedList', 'numberedList', 'findAndReplace', 'highlight', 'subscript', 'superscript',
                     'specialCharacters', '|', 'imageInsert', 'code', 'codeBlock', 'insertTable', 'mediaEmbed', '|',
                      'blockQuote', 'fullscreen', 'removeFormat'],
+        'extraAllowedContent': '*(*);*[*]',
         
         'image': {
             'toolbar': ['imageTextAlternative', '|', 'imageStyle:alignLeft',

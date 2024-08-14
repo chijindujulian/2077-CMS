@@ -16,10 +16,10 @@ class Article(BaseModel):
 
     title = models.CharField(max_length=100)
     content = CKEditor5Field(null=True, blank=True, config_name='extends')
-    summary = models.TextField(blank=True)
+    summary = models.CharField(max_length=100, blank=True)
     authors = models.ManyToManyField(Author, blank=True, related_name='articles')
     slug = models.SlugField(blank=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="articles")
+    categories = models.ManyToManyField(Category, blank=True, related_name='articles')
     thumb = models.ImageField(upload_to='images/', default='../media/images/2077-Collective.png', blank=True)
     views = models.PositiveBigIntegerField(default=0)
     status = models.CharField(max_length=10, choices=options, default='draft')
