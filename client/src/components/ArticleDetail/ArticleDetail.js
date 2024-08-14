@@ -39,7 +39,9 @@ function ArticleDetail() {
           />
           <CardContent>
             <Typography variant="h4">{article.title}</Typography>
-            <Typography variant="h6">Author: {article.author}</Typography>
+            <Typography variant="h6">
+  Author(s): {article.authors.map(author => author.username).join(', ')}
+</Typography>
             <Typography variant="h6">
               {formatDate(article.created_at)}
             </Typography>

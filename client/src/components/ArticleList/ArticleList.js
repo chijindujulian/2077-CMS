@@ -62,7 +62,7 @@ function ArticleList() {
                 </Typography>
                 <Box mb={2} /> {/* Margin bottom for spacing */}
                 <Typography variant="body2" color="text.secondary">
-                  Author: {article.author}
+                  Author(s): {article.authors.map(author => author.username).join(', ')}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {formatDate(article.created_at)}
