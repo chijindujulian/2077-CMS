@@ -94,16 +94,16 @@ Before running the application, ensure you have the following:
    | :----: | :---------------: | :-----------------: |
    |  GET   |     articles/     |  List all articles  |
    |  POST  |     articles/     |   Add an article    |
-   |  GET   | articles/<int:pk> | Retrieve an article |
-   | PATCH  | articles/<int:pk> |  Update an article  |
-   | DELETE | articles/<int:pk> |  Delete an article  |
+   |  GET   | articles/<uuid:pk> | Retrieve an article |
+   | PATCH  | articles/<uuid:pk> |  Update an article  |
+   | DELETE | articles/<uuid:pk> |  Delete an article  |
 
 7. Client Testing: `http://localhost:3000/<ROUTE>`
 
    | Method |       Route       |     Description     |
    | :----: | :---------------: | :-----------------: |
    |  GET   | articles/         |  List all articles  |
-   |  GET   | articles/<int:pk> | Retrieve an article |
+   |  GET   | articles/<uuid:pk> | Retrieve an article |
 
 8. Model Testing: run `python manage.py test`
 
