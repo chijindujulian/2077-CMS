@@ -8,9 +8,9 @@ class ArticleAdmin(admin.ModelAdmin):
     """Admin interface for the Article model."""
     
     fieldsets = [
-        ('Article Details', {'fields': ['title', 'categories', 'thumb', 'content', 'summary', 'status', 'authors']}),
+        ('Article Details', {'fields': ['title', 'authors', 'categories', 'thumb', 'content', 'summary', 'status', 'scheduled_publish_time']}),
     ]
-    list_display = ('title', 'display_authors', 'status', 'views', 'display_categories', 'created_at')
+    list_display = ('title', 'display_authors', 'status', 'views', 'display_categories', 'created_at', 'scheduled_publish_time')
     search_fields = ('title', 'authors__user__username', 'authors__twitter_username', 'content')
     list_per_page = 25
     list_filter = ('authors', 'status', 'categories', 'created_at')

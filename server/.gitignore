@@ -15,3 +15,5 @@ test.rest
 db.sqlite3
 staticfiles/
 nohup.out
+dump.rdb
+celerybeat-schedule.db

@@ -53,6 +53,7 @@ THIRD_PARTY_APPS = [
     'corsheaders',
     'ckeditor_uploader',
     'django_ckeditor_5',
+    'django_celery_beat',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
@@ -185,3 +186,4 @@ SILENCED_SYSTEM_CHECKS = [
 
 from .jazzmin import *
 from .ckeditor import *
+from .celery_config import *

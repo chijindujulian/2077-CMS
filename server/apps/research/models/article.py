@@ -5,6 +5,7 @@ from apps.common.models import BaseModel
 from apps.research.managers import ArticleObjects
 from .category import Category
 from .author import Author
+from django.utils import timezone
 
 class Article(BaseModel):
     """Model for articles."""
@@ -23,6 +24,8 @@ class Article(BaseModel):
     thumb = models.ImageField(upload_to='images/', default='../media/images/2077-Collective.png', blank=True)
     views = models.PositiveBigIntegerField(default=0)
     status = models.CharField(max_length=10, choices=options, default='draft')
+    scheduled_publish_time = models.DateTimeField(null=True, blank=True, db_index=True)    
+    
     objects = models.Manager()
     post_objects = ArticleObjects()
 
@@ -36,6 +39,10 @@ class Article(BaseModel):
         """Override the save method to generate a unique slug."""
         if not self.slug:
             self.slug = self.generate_unique_slug()
+        
+        """Override the save method to handle scheduled publishing."""
+        if self.scheduled_publish_time and self.status == 'draft' and timezone.now() >= self.scheduled_publish_time:
+            self.status = 'ready'
         super().save(*args, **kwargs)
 
     def generate_unique_slug(self):
