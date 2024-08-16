@@ -3,9 +3,12 @@ import os
 from django.conf import settings
 from celery import Celery
 from celery.schedules import crontab
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Set the default Django settings module for the 'celery' program.
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.config.local')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', os.getenv('DJANGO_SETTINGS_MODULE', 'core.config.local'))
 
 app = Celery('core')
 
