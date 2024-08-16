@@ -17,3 +17,4 @@ staticfiles/
 nohup.out
 dump.rdb
 celerybeat-schedule.db
+test-db.sqlite3
