@@ -1,0 +1,26 @@
+---
+import BaseHead from "../components/layout/BaseHead.astro";
+import Header from '../layouts/Header.astro'
+
+interface Props {
+  title: string;
+  description: string;
+  classList?: string;
+  pageTitle?: string;
+  ogImage?: URL;
+}
+
+const { title, description, classList, pageTitle, ogImage } = Astro.props;
+
+const _ogImage = new URL(
+  "https://res.cloudinary.com/dltdrlzdg/image/upload/v1720021067/ShMk1Iw_vrsqmi.webp"
+);
+---
+
+<!doctype html lang="en">
+	<BaseHead ogImage={_ogImage} title={title} description={description} />
+  <Header />
+	<body>
+		<slot />
+	</body>
+</html>

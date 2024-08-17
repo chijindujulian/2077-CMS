@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+interface Category {
+name: string;
+}
+
+interface Article {
+id: string;
+title: string;
+authors: { username: string }[];
+content: string;
+views: string;
+summary: string;
+categories: Category[];
+thumb: string;
+}
+
+let articles: Article[] = [];
+const category = Astro.params.category;
+
+try {
+  const response = await fetch(`http://127.0.0.1:8000/api/articles/category/${category}/`);
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  const data = await response.json();
+  console.log(data);
+  articles = data.data; // Assuming the API response has a "data" property
+} catch (error) {
+  console.error('Error fetching articles:', error);
+  // You can also display an error message to the user here
+}
+---
+
+<Layout
+title={`${category} | 2077 Research`}
+description="Deep dives and technical analyses on Ethereum infrastructure, protocols, and applications"
+>
+<main>
+<h1 class="my-12">{category}</h1>
+<ul>
+{
+articles.map((article: Article) => (
+<li data-key={article.id}>
+<img src={`${article.thumb}`} alt="" width="720" height="480" />
+<h2>{article.title}</h2>
+<p>{article.summary}</p>
+<a href={`/${article.id}`}>Read post</a>
+</li>
+))
+}
+</ul>
+</main>
+</Layout>

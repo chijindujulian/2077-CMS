@@ -49,6 +49,14 @@ class ArticleViewSet(viewsets.ModelViewSet):
         instance.refresh_from_db(fields=['views'])
         serializer = self.get_serializer(instance)
         return Response({'success': True, 'data': serializer.data})
+    
+    #Custom action to retrieve articles by category
+    @action(detail=False, methods=['get'], url_path=r'category/(?P<category>[-\w]+)')
+    def retrieve_by_category(self, request, category=None):
+        """Retrieve article list by category"""
+        instances = Article.objects.filter(categories__name=category)
+        serializer = self.get_serializer(instances, many=True)
+        return Response({'success': True, 'data': serializer.data})
 
     
     def is_valid_uuid(self, value):

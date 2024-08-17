@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+interface Category {
+name: string;
+}
+
+interface Article {
+id: string;
+title: string;
+authors: { username: string }[];
+content: string;
+views: string;
+summary: string;
+categories: Category[];
+thumb: string;
+}
+
+let articles: Article[] = [];
+
+try {
+const response = await fetch("http://127.0.0.1:8000/api/articles");
+articles = await response.json();
+} catch (error) {
+console.error(error);
+}
+---
+
+<Layout
+title="2077 Research"
+description="Deep dives and technical analyses on Ethereum infrastructure, protocols, and applications"
+>
+<main>
+<ul>
+{
+articles.map((article: Article) => (
+<li data-key={article.id}>
+<img
+src={`${article.thumb}`}
+alt=""
+width="720"
+height="480"
+/>
+<ul>
+  {article?.categories.map((category) => (
+    <li>
+      <a href={`/${category.name}`}>{category.name}</a>
+    </li>
+  ))}
+</ul>
+<h2>{article.title}</h2>
+<>
+<p>{article.summary}</p>
+<a href={`/${article.id}`}>Read post</a>
+</>
+</li>
+))
+}
+</ul>
+</main>
+</Layout>
