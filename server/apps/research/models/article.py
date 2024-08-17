@@ -16,7 +16,7 @@ class Article(BaseModel):
     )
 
     title = models.CharField(max_length=100)
-    content = CKEditor5Field(null=True, blank=True, config_name='extends')
+    content = CKEditor5Field('Text', null=True, blank=True, config_name='extends')
     summary = models.CharField(max_length=100, blank=True)
     authors = models.ManyToManyField(Author, blank=True, related_name='articles')
     slug = models.SlugField(blank=True)

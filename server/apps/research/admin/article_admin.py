@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 from django_ckeditor_5.widgets import CKEditor5Widget
-from apps.research.models import Article, Author, Category
+from apps.research.models import Article, Author
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
@@ -21,7 +21,7 @@ class ArticleAdmin(admin.ModelAdmin):
         """Return a form with CKEditor5Widget for the content field."""
         form = super().get_form(request, obj, **kwargs)
         if 'content' in form.base_fields:
-            form.base_fields['content'].widget = CKEditor5Widget(attrs={"class": "django_ckeditor_5"})
+            form.base_fields['content'].widget = CKEditor5Widget(attrs={"class": "django_ckeditor_5"}, config_name='extends')
         return form
     
     def display_authors(self, obj):
