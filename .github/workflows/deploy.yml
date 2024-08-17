@@ -17,6 +17,7 @@ jobs:
         USERNAME: ${{ secrets.USERNAME }}
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
+        PASS: ${{ secrets.PASS }}
       with:
         source: "."
         target: "/var/www/2077-CMS"
@@ -28,4 +29,5 @@ jobs:
         USERNAME: ${{ secrets.USERNAME }}
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
+        PASS: ${{ secrets.PASS }}
         script: ls
