@@ -107,7 +107,7 @@ Before running the application, ensure you have the following:
 
 8. Model Testing: run `python manage.py test`
 
-9. Contributing
+9. Contributing 
 
 If you want to contribute to this project, please read the [contribution guide](./CONTRIBUTING.md).
 
