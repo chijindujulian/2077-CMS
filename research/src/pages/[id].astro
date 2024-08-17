@@ -30,8 +30,14 @@ try {
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
-    article = await response.json();
-    console.log("Article data:", article);
+    const data = await response.json();
+    
+    if (data && data.success && data.data) {
+        article = data as Article;
+        
+    } else {
+        throw new Error("Invalid article data");
+    }
 } catch (error) {
     console.error("Error fetching article:", error);
 }
@@ -39,35 +45,37 @@ try {
 
 <Layout
     title={article?.data?.title ?? ""}
-    description={article?.data?.description ?? ""}
+    description={article?.data?.summary ?? ""}
 >
     <main class="">
         <a href="/">Back</a>
         {
-            article?.data ? (
+            article ? (
                 <article>
                     <div>
                         <ul>
-                            {article?.data?.categories.map((category) => (
-                                <li>
-                                    <a href={`/${category.name}`}>
-                                        {category.name}
-                                    </a>
-                                </li>
-                            ))}
+                            {article.data?.categories.map(
+                                (category: { name: string }) => (
+                                    <li>
+                                        <a href={`/categories/${category.name}`}>
+                                            {category.name}
+                                        </a>
+                                    </li>
+                                ),
+                            )}
                         </ul>
-                        <h1>{article.data.title}</h1>
-                        <p>{article.data.summary}</p>
+                        <h1>{article.data?.title}</h1>
+                        <p>{article.data?.summary}</p>
 
                         <div>
                             <img
-                                src={`${article.data.thumb}`}
+                                src={`${article.data?.thumb}`}
                                 alt=""
                                 width="720"
                                 height="480"
                             />
                         </div>
-                        <div set:html={article.data.content} />
+                        <div set:html={article.data?.content} />
                     </div>
                 </article>
             ) : (
