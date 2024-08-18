@@ -41,9 +41,9 @@ try {
       </div>
       <div class="flex justify-between">
         <div class="hidden lg:flex pr-12 xl:w-1/6">
-          <ul>
+          <ul class="">
             {Array.from(new Set(articles.flatMap((article) => article.categories.map((category) => category.name)))).map((category) => (
-              <li>
+              <li class="pb-8">
                 <a href={`/categories/${category}`}>{category}</a>
               </li>
             ))}
@@ -68,7 +68,7 @@ try {
                 <h2>{article.title}</h2>
                 <>
                   <p>{article.summary}</p>
-                  <a href={`/${article.id}`}>Read post</a>
+                  <a class="bg-transparent hover:text-[#C6FF50]" href={`/${article.id}`}>Read post &rarr;</a>
                 </>
               </li>
             ))

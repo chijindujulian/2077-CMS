@@ -31,10 +31,9 @@ try {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    
+
     if (data && data.success && data.data) {
         article = data as Article;
-        
     } else {
         throw new Error("Invalid article data");
     }
@@ -47,44 +46,54 @@ try {
     title={article?.data?.title ?? ""}
     description={article?.data?.summary ?? ""}
 >
-    <main class="">
-        <a href="/">Back</a>
-        {
-            article ? (
-                <article>
-                    <div>
-                        <ul>
-                            {article.data?.categories.map(
-                                (category: { name: string }) => (
-                                    <li>
-                                        <a href={`/categories/${category.name}`}>
-                                            {category.name}
-                                        </a>
-                                    </li>
-                                ),
-                            )}
-                        </ul>
-                        <h1>{article.data?.title}</h1>
-                        <p>{article.data?.summary}</p>
-
+    <main class="max-w-screen-3xl m-auto">
+        <article class="pt-8 px-6 lg:px-32">
+            <a href="/">Back</a>
+            {
+                article ? (
+                    <article>
                         <div>
-                            <img
-                                src={`${article.data?.thumb}`}
-                                alt=""
-                                width="720"
-                                height="480"
-                            />
+                            <ul class="flex gap-x-2">
+                                {article.data?.categories.map(
+                                    (category: { name: string }) => (
+                                        <li>
+                                            <a
+                                                href={`/categories/${category.name}`}
+                                            >
+                                                {category.name}
+                                            </a>
+                                        </li>
+                                    ),
+                                )}
+                            </ul>
+                            <h1>{article.data?.title}</h1>
+                            <p>{article.data?.summary}</p>
+
+                            <div class="flex justify-center py-8">
+                                <img
+                                    src={`${article.data?.thumb}`}
+                                    alt=""
+                                    width="1024"
+                                    height="682"
+                                />
+                            </div>
+                            <div class="max-w-screen-lg m-auto flex flex-col gap-y-8 mb-32" set:html={article.data?.content.replace(/<hr\s*\/?>/g, '')} />
                         </div>
-                        <div set:html={article.data?.content} />
-                    </div>
-                </article>
-            ) : (
-                <p>
-                    {article === null
-                        ? "Error loading article. Please try again."
-                        : "Article not found."}
-                </p>
-            )
-        }
+                    </article>
+                ) : (
+                    <p>
+                        {article === null
+                            ? "Error loading article. Please try again."
+                            : "Article not found."}
+                    </p>
+                )
+            }
+        </article>
     </main>
 </Layout>
+
+<style>
+    p {
+        padding-block-end: 2rem;
+    }
+</style>
