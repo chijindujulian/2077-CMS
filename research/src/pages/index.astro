@@ -42,12 +42,11 @@ try {
       <div class="flex justify-between">
         <div class="hidden lg:flex pr-12 xl:w-1/6">
           <ul>
-            <li class="">all</li>
-            <li class="">DeFi</li>
-            <li class="">Governance</li>
-            <li class="">Infrastructure</li>
-            <li class="">Level 1</li>
-            <li class="">Level 2</li>
+            {Array.from(new Set(articles.flatMap((article) => article.categories.map((category) => category.name)))).map((category) => (
+              <li>
+                <a href={`/categories/${category}`}>{category}</a>
+              </li>
+            ))}
           </ul>
         </div>
         <ul
