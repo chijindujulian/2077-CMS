@@ -47,6 +47,7 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     'apps.common',
     'apps.research',
+    'apps.newsletter',
 ]
 
 THIRD_PARTY_APPS = [
@@ -187,3 +188,4 @@ SILENCED_SYSTEM_CHECKS = [
 from .jazzmin import *
 from .ckeditor import *
 from .celery_config import *
+from .mail import *
