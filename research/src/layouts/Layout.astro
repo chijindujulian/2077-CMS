@@ -1,7 +1,7 @@
 ---
 import BaseHead from "../components/layout/BaseHead.astro";
-import Header from '../layouts/Header.astro'
-import Footer from '../layouts/Footer.astro'
+import Header from "../layouts/Header.astro";
+import Footer from "../layouts/Footer.astro";
 
 interface Props {
   title: string;
@@ -12,9 +12,10 @@ interface Props {
 const { title, description, ogImage } = Astro.props;
 
 const _ogImage = new URL(
-  "https://res.cloudinary.com/dltdrlzdg/image/upload/v1720021067/ShMk1Iw_vrsqmi.webp"
+  "https://res.cloudinary.com/dltdrlzdg/image/upload/v1720021067/ShMk1Iw_vrsqmi.webp",
 );
 ---
+
 <script is:inline>
   const theme = (() => {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
@@ -32,13 +33,29 @@ const _ogImage = new URL(
     document.documentElement.classList.add("dark");
   }
   window.localStorage.setItem("theme", theme);
+
+  function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  /**Dropdown menu logic */
+  window.onclick = function (event) {
+    if (!event.target.matches(".dropbtn")) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains("show")) {
+          openDropdown.classList.remove("show");
+        }
+      }
+    }
+  };
 </script>
 
-<!doctype html lang="en">
-	<BaseHead ogImage={_ogImage} title={title} description={description} />
-  <Header />
-	<body>
-		<slot />
-	</body>
-  <Footer />
-</html>
+<BaseHead ogImage={_ogImage} title={title} description={description} />
+<Header />
+<body>
+  <slot />
+</body>
+<Footer />
