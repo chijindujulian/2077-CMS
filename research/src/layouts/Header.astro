@@ -1,32 +1,4 @@
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const dropdownButton = document.querySelector(
-      ".resources-button"
-    ) as HTMLSpanElement;
-    const dropdownMenu = document.querySelector(".sidebar") as HTMLDivElement;
-    let isOpen = false;
-
-    if (dropdownButton && dropdownMenu) {
-      dropdownButton.addEventListener("click", (event: MouseEvent) => {
-        event.preventDefault(); // Prevent default anchor behavior
-        isOpen = !isOpen;
-        dropdownMenu.classList.toggle("show", isOpen);
-      });
-
-      document.addEventListener("click", (event: MouseEvent) => {
-        if (
-          !dropdownButton.contains(event.target as Node) &&
-          !dropdownMenu.contains(event.target as Node)
-        ) {
-          isOpen = false;
-          dropdownMenu.classList.remove("show");
-        }
-      });
-    }
-  });
-</script>
-
 <header class="py-8 px-6 lg:px-32 max-w-screen-3xl m-auto">
   <nav class="flex justify-between"
     <div class="">
@@ -217,5 +189,10 @@
 
   .resources-button:hover .svg-path {
     fill: #c6ff50;
+  }
+  
+  .resources-button:focus + .sidebar,
+  .resources-button:hover + .sidebar {
+    display: block;
   }
 </style>

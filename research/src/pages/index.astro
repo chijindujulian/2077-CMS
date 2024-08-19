@@ -43,7 +43,7 @@ try {
         <div class="hidden lg:flex pr-12 xl:w-1/6">
           <ul class="">
             {Array.from(new Set(articles.flatMap((article) => article.categories.map((category) => category.name)))).map((category) => (
-              <li class="pb-8">
+              <li class="pb-4">
                 <a href={`/categories/${category}`}>{category}</a>
               </li>
             ))}

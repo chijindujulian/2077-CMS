@@ -2,54 +2,86 @@
 import Layout from "../../layouts/Layout.astro";
 
 interface Category {
-name: string;
+  name: string;
 }
 
 interface Article {
-id: string;
-title: string;
-authors: { username: string }[];
-content: string;
-views: string;
-summary: string;
-categories: Category[];
-thumb: string;
+  id: string;
+  title: string;
+  authors: { username: string }[];
+  content: string;
+  views: string;
+  summary: string;
+  categories: Category[];
+  thumb: string;
 }
+
 
 let articles: Article[] = [];
 const category = Astro.params.category;
 
 try {
-  const response = await fetch(`http://127.0.0.1:8000/api/articles/category/${category}/`);
+  const response = await fetch(
+    `http://127.0.0.1:8000/api/articles/category/${category}/`,
+  );
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   }
   const data = await response.json();
   console.log(data);
-  articles = data.data; // Assuming the API response has a "data" property
+  articles = data.data;
 } catch (error) {
-  console.error('Error fetching articles:', error);
-  // You can also display an error message to the user here
+  console.error("Error fetching articles:", error);
 }
 ---
 
 <Layout
-title={`${category} | 2077 Research`}
-description="Deep dives and technical analyses on Ethereum infrastructure, protocols, and applications"
+  title={`${category} | 2077 Research`}
+  description="Deep dives and technical analyses on Ethereum infrastructure, protocols, and applications"
 >
-<main>
-<h1 class="my-12">{category}</h1>
-<ul>
-{
-articles.map((article: Article) => (
-<li data-key={article.id}>
-<img src={`${article.thumb}`} alt="" width="720" height="480" />
-<h2>{article.title}</h2>
-<p>{article.summary}</p>
-<a href={`/${article.id}`}>Read post</a>
-</li>
-))
-}
-</ul>
-</main>
+  <main class="max-w-screen-3xl m-auto">
+    <section class="pt-8 px-6 lg:px-32">
+      <div class="mb-8">
+        <h1 class="">{category}</h1>
+      </div>
+      <div class="flex justify-between">
+        <div class="hidden lg:flex pr-12 xl:w-1/6">
+          <ul class="">
+            {
+              Array.from(
+                new Set(
+                  articles.flatMap((article) =>
+                    article.categories.map((category) => category.name),
+                  ),
+                ),
+              ).map((cat) => (
+                <li class="pb-4">
+                  <a
+                    href={`/categories/${cat}`}
+                    class={cat === Astro.params.category ? "text-[#c6ff50]" : ""}
+                  >
+                    {cat}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <ul
+          class="mb-32 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 xl:w-5/6"
+        >
+          {
+            articles.map((article: Article) => (
+              <li data-key={article.id}>
+                <img src={`${article.thumb}`} alt="" width="720" height="480" />
+                <h2>{article.title}</h2>
+                <p>{article.summary}</p>
+                <a href={`/${article.id}`}>Read post</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+  </main>
 </Layout>
