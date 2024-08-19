@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Newsletter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        background-color: #4caf50;
+        color: #ffffff;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .header h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+
+      .content {
+        padding: 20px;
+        line-height: 1.6;
+      }
+
+      .content h2 {
+        color: #333333;
+        font-size: 20px;
+        margin-top: 0;
+      }
+
+      .content p {
+        color: #666666;
+        margin: 10px 0;
+      }
+
+      .button {
+        display: inline-block;
+        background-color: #4caf50;
+        color: #ffffff;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+
+      .footer {
+        background-color: #333333;
+        color: #ffffff;
+        padding: 10px 20px;
+        text-align: center;
+        font-size: 14px;
+      }
+
+      .footer a {
+        color: #ffffff;
+        text-decoration: underline;
+      }
+
+      @media only screen and (max-width: 600px) {
+        .container {
+          width: 100%;
+          margin: 0;
+          border-radius: 0;
+        }
+
+        .content h2 {
+          font-size: 18px;
+        }
+
+        .header h1 {
+          font-size: 20px;
+        }
+
+        .button {
+          padding: 10px;
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Welcome to Our Newsletter</h1>
+      </div>
+
+      <div class="content">
+        <h2>Latest Updates</h2>
+        <p>
+          We are excited to bring you the latest news and updates from our team.
+          This month has been full of exciting developments, and we are thrilled
+          to share them with you!
+        </p>
+        <p>
+          Stay tuned for more updates and be sure to follow us on our social
+          media channels.
+        </p>
+
+        <a href="{unsubscribe_link}" class="button">Read More</a>
+      </div>
+
+      <div class="footer">
+        <p>&copy; 2024 | 2077 Collective. All rights reserved.</p>
+        <p><a href="{unsubscribe_link}">Click here to unsubscribe</a></p>
+      </div>
+    </div>
+  </body>
+</html>
