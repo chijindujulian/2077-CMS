@@ -25,6 +25,11 @@ app.conf.beat_schedule = {
         'task': 'apps.research.tasks.publish_scheduled_articles',
         'schedule': crontab(minute='*/1'),  # Runs every minute
     },
+    
+    'send-scheduled-newsletter': {
+        'task': 'apps.newsletter.tasks.send_newsletter_via_email',
+        'schedule': crontab(minute='*/1'),  # Runs every minute
+    },
 }
 
 @app.task(bind=True)
