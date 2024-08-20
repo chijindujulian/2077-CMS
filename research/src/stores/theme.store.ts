@@ -18,12 +18,10 @@ export function toggleTheme() {
 
     if (currentTheme === Themes.Dark || !currentTheme) {
         theme.set(Themes.Light)
-        console.log(theme.get())
         localStorage.setItem(LOCAL_STORAGE_KEY, Themes.Light)
         document.documentElement.classList.remove('dark')
     } else {
         theme.set(Themes.Dark)
-        console.log(theme.get())
         localStorage.setItem(LOCAL_STORAGE_KEY, Themes.Dark)
         document.documentElement.classList.add('dark')
     }
