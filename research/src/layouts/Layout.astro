@@ -1,63 +1,65 @@
 ---
-import BaseHead from "../components/layout/BaseHead.astro";
-import Header from "../layouts/Header.astro";
-import Footer from "../layouts/Footer.astro";
+import BaseHead from '../components/layout/BaseHead.astro'
+import Header from '../layouts/Header.astro'
+import Footer from '../layouts/Footer.astro'
 
 interface Props {
-  title: string;
-  description: string;
-  ogImage?: URL;
+    title: string
+    description: string
+    ogImage?: URL
 }
 
-const { title, description, ogImage } = Astro.props;
+const { title, description, ogImage } = Astro.props
 
 const _ogImage = new URL(
-  "https://res.cloudinary.com/dltdrlzdg/image/upload/v1720021067/ShMk1Iw_vrsqmi.webp",
-);
+    'https://res.cloudinary.com/dltdrlzdg/image/upload/v1720021067/ShMk1Iw_vrsqmi.webp',
+)
 ---
 
 <script is:inline>
-  const theme = (() => {
-    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
-      return localStorage.getItem("theme");
-    }
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
-  })();
-
-  if (theme === "light") {
-    document.documentElement.classList.remove("dark");
-  } else {
-    document.documentElement.classList.add("dark");
-  }
-  window.localStorage.setItem("theme", theme);
-
-  function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-
-  /**Dropdown menu logic */
-  window.onclick = function (event) {
-    if (!event.target.matches(".dropbtn")) {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
-      var i;
-      for (i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains("show")) {
-          openDropdown.classList.remove("show");
+    const theme = (() => {
+        if (
+            typeof localStorage !== 'undefined' &&
+            localStorage.getItem('theme')
+        ) {
+            return localStorage.getItem('theme')
         }
-      }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            return 'dark'
+        }
+        return 'light'
+    })()
+
+    if (theme === 'light') {
+        document.documentElement.classList.remove('dark')
+    } else {
+        document.documentElement.classList.add('dark')
     }
-  };
+    window.localStorage.setItem('theme', theme)
+
+    function myFunction() {
+        document.getElementById('myDropdown').classList.toggle('show')
+    }
+
+    /**Dropdown menu logic */
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName('dropdown-content')
+            var i
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i]
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show')
+                }
+            }
+        }
+    }
 </script>
 
 <html lang="en" class="h-full">
-  <BaseHead ogImage={_ogImage} title={title} description={description} />
-  <Header />
-  <body>
-    <slot />
-  </body>
-  <Footer />
+    <BaseHead ogImage={_ogImage} title={title} description={description} />
+    <Header />
+    <body>
+        <slot />
+    </body><Footer />
 </html>

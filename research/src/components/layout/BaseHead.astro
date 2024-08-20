@@ -1,98 +1,99 @@
 ---
 // @ts-ignore: Cannot find module 'astro:transitions'
-import { ViewTransitions } from "astro:transitions";
+import { ViewTransitions } from 'astro:transitions'
 
 interface Props {
-  title: string;
-  description: string;
-  ogImage?: URL;
+    title: string
+    description: string
+    ogImage?: URL
 }
 
 //const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 Astro.props.ogImage ??= new URL(
-  `${Astro.url.origin}/assets/EIPsForNerds7-EIP-7657(SyncCommitteeSlashings).webp`,
-);
+    `${Astro.url.origin}/assets/EIPsForNerds7-EIP-7657(SyncCommitteeSlashings).webp`,
+)
 
-const { title, description, ogImage } = Astro.props;
+const { title, description, ogImage } = Astro.props
 ---
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="generator" content={Astro.generator} />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
 
-  <meta name="title" content={`${title}`} />
-  <meta name="description" content={description} />
+    <meta name="title" content={`${title}`} />
+    <meta name="description" content={description} />
 
-  <meta property="og:type" content="website" />
-  <!--<meta property="og:url" content={canonicalURL} /> -->
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <!--<meta property="og:url" content={canonicalURL} /> -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
 
-  <meta property="twitter:card" content="summary_large_image" />
-  <!--<meta property="twitter:url" content={canonicalURL} /> -->
-  <meta property="twitter:title" content={title} />
-  <meta property="twitter:description" content={description} />
-  <meta property="twitter:image" content={ogImage} />
+    <meta property="twitter:card" content="summary_large_image" />
+    <!--<meta property="twitter:url" content={canonicalURL} /> -->
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
 
-  <!--<link rel="canonical" href={canonicalURL} /> -->
-  <link rel="icon" type="image/svg" href="/favicon.svg" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <!--<link rel="canonical" href={canonicalURL} /> -->
+    <link rel="icon" type="image/svg" href="/favicon.svg" />
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Avenir:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    />
 
-  
-  <script is:inline>
-    const theme = () => {
-      let btn = document.querySelector("#btn");
-      let btn_mobile = document.querySelector("#btn-mobile");
-      const toggleDarkMode = () => {
-        document.documentElement.classList.toggle("dark");
-        const isDarkMode = document.documentElement.classList.contains("dark");
-        localStorage.setItem("theme", isDarkMode ? "dark" : "light");
-      };
-      btn.addEventListener("click", toggleDarkMode);
-      btn_mobile.addEventListener("click", toggleDarkMode);
-    };
+    <script is:inline>
+        const theme = () => {
+            let btn = document.querySelector('#btn')
+            let btn_mobile = document.querySelector('#btn-mobile')
+            const toggleDarkMode = () => {
+                document.documentElement.classList.toggle('dark')
+                const isDarkMode =
+                    document.documentElement.classList.contains('dark')
+                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light')
+            }
+            btn.addEventListener('click', toggleDarkMode)
+            btn_mobile.addEventListener('click', toggleDarkMode)
+        }
 
-    theme();
+        theme()
 
-    document.addEventListener("astro:after-swap", theme);
-  </script>
+        document.addEventListener('astro:after-swap', theme)
+    </script>
 
-  <script
-    is:inline
-    defer
-    data-domain="research.2077.xyz"
-    src="https://plausible.io/js/script.outbound-links.js">
-  </script>
+    <script
+        is:inline
+        defer
+        data-domain="research.2077.xyz"
+        src="https://plausible.io/js/script.outbound-links.js"></script>
 
-  <title>{title}</title>
+    <title>{title}</title>
 
-  <ViewTransitions />
-
+    <ViewTransitions />
 </head>
 
 <style is:global>
-  body {
-    background: white;
-    color: black;
-    //padding: 2em;
-    padding-block-start: 0;
-    font-family: "avenir-book", sans-serif;
-    line-height: 1.7;
-  }
-
-  .dak {
     body {
-      background: black;
-      color: white;
-
-      header {
-        a.button-primary {
-          color: var(--color-dark);
-        }
-      }
+        background: white;
+        color: black;
+        //padding: 2em;
+        padding-block-start: 0;
+        font-family: 'avenir-book', sans-serif;
+        line-height: 1.7;
     }
-  }
+
+    .dak {
+        body {
+            background: black;
+            color: white;
+
+            header {
+                a.button-primary {
+                    color: var(--color-dark);
+                }
+            }
+        }
+    }
 </style>
