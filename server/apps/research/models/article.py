@@ -6,6 +6,11 @@ from apps.research.managers import ArticleObjects
 from .category import Category
 from .author import Author
 from django.utils import timezone
+from django.conf import settings
+
+
+def get_default_thumb():
+    return f"{settings.MEDIA_URL}images/2077-Collective.png"
 
 class Article(BaseModel):
     """Model for articles."""
@@ -21,7 +26,7 @@ class Article(BaseModel):
     authors = models.ManyToManyField(Author, blank=True, related_name='articles')
     slug = models.SlugField(blank=True)
     categories = models.ManyToManyField(Category, blank=True, related_name='articles')
-    thumb = models.ImageField(upload_to='images/', default='../media/images/2077-Collective.png', blank=True)
+    thumb = models.ImageField(upload_to='images/', default=get_default_thumb, blank=True)
     views = models.PositiveBigIntegerField(default=0)
     status = models.CharField(max_length=10, choices=options, default='draft')
     scheduled_publish_time = models.DateTimeField(null=True, blank=True, db_index=True)    

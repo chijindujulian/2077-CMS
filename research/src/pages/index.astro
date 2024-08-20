@@ -13,13 +13,15 @@ interface Article {
   views: string;
   summary: string;
   categories: Category[];
-  thumb: string;
+  thumb: {
+    url: string;
+  };
 }
 
 let articles: Article[] = [];
 
 try {
-  const response = await fetch("http://127.0.0.1:8000/api/articles");
+  const response = await fetch("https://cms.2077.xyz/api/articles");
   articles = await response.json();
 } catch (error) {
   console.error(error);
