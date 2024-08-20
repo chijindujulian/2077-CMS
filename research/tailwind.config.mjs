@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
     darkMode: 'class',
+    safelist: ['dark'],
     content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
     theme: {
         colors: {
@@ -8,6 +9,7 @@ export default {
             white: '#efefef',
             green: '#C6FF50',
             greenLm: '#91b208',
+            gray: '#1b1b1b',
         },
         fontFamily: {
             sans: ['Graphik', 'sans-serif'],

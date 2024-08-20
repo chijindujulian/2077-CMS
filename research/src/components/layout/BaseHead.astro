@@ -1,5 +1,4 @@
 ---
-// @ts-ignore: Cannot find module 'astro:transitions'
 import { ViewTransitions } from 'astro:transitions'
 
 interface Props {
@@ -45,22 +44,22 @@ const { title, description, ogImage } = Astro.props
     />
 
     <script is:inline>
-        const theme = () => {
-            let btn = document.querySelector('#btn')
-            let btn_mobile = document.querySelector('#btn-mobile')
-            const toggleDarkMode = () => {
-                document.documentElement.classList.toggle('dark')
-                const isDarkMode =
-                    document.documentElement.classList.contains('dark')
-                localStorage.setItem('theme', isDarkMode ? 'dark' : 'light')
-            }
-            btn.addEventListener('click', toggleDarkMode)
-            btn_mobile.addEventListener('click', toggleDarkMode)
-        }
+        // const theme = () => {
+        //     let btn = document.querySelector('#btn')
+        //     let btn_mobile = document.querySelector('#btn-mobile')
+        //     const toggleDarkMode = () => {
+        //         document.documentElement.classList.toggle('dark')
+        //         const isDarkMode =
+        //             document.documentElement.classList.contains('dark')
+        //         localStorage.setItem('theme', isDarkMode ? 'dark' : 'light')
+        //     }
+        //     btn.addEventListener('click', toggleDarkMode)
+        //     btn_mobile.addEventListener('click', toggleDarkMode)
+        // }
 
-        theme()
+        // theme()
 
-        document.addEventListener('astro:after-swap', theme)
+        // document.addEventListener('astro:after-swap', theme)
     </script>
 
     <script

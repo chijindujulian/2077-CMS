@@ -45,7 +45,7 @@ try {
             </div>
             <div class="flex justify-between">
                 <div
-                    class="menu hidden bg-black lg:block mr-12 rounded-xl xl:w-1/6 h-[520px]"
+                    class="menu hidden dark:bg-gray bg-black lg:block mr-12 rounded-xl xl:w-1/6 h-[520px]"
                 >
                     <div class="pt-8 px-8 flex flex-col gap-6">
                         {
@@ -77,6 +77,10 @@ try {
                                 class="flex flex-col gap-y-1 mb-6"
                                 data-key={article.id}
                             >
+                                <a
+                                    class="bg-transparent"
+                                    href={`/${article.id}`}
+                                >
                                 <img
                                     src={`${article.thumb}`}
                                     alt=""
@@ -86,21 +90,16 @@ try {
                                 <ul class="flex gap-x-2 py-2">
                                     {article?.categories.map((category) => (
                                         <li>
-                                            <a
-                                                href={`/categories/${category.name}`}
+                                            <div
+                                                class="flex items-center gap-0.5 text-sm bg-[#1B1B1B] text-[#C6FF50] max-w-fit-content px-2 py-1.5 rounded-md"
                                             >
                                                 {category.name}
-                                            </a>
+                                            </div>
                                         </li>
                                     ))}
                                 </ul>
-                                <h2 class="mb-2">{article.title}</h2>
+                                <h2 class="mb-2 text-xl font-bold">{article.title}</h2>
                                 <p class="mb-4">{article.summary}</p>
-                                <a
-                                    class="bg-transparent hover:text-[#C6FF50]"
-                                    href={`/${article.id}`}
-                                >
-                                    Read post &rarr;
                                 </a>
                             </li>
                         ))
