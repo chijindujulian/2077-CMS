@@ -47,6 +47,7 @@ DJANGO_APPS = [
 LOCAL_APPS = [
     'apps.common',
     'apps.research',
+    'apps.newsletter',
 ]
 
 THIRD_PARTY_APPS = [
@@ -85,9 +86,11 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "http://127.0.0.1:8000",    
+    "http://127.0.0.1:8000",
+    "http://localhost:4321",    
 ]
 
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'core.urls'
 
@@ -187,3 +190,4 @@ SILENCED_SYSTEM_CHECKS = [
 from .jazzmin import *
 from .ckeditor import *
 from .celery_config import *
+from .mail import *
