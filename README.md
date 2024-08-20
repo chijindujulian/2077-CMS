@@ -53,6 +53,7 @@ Before running the application, ensure you have the following:
 4. Setup Environment Variables:
 
    Create a .env file in the root directory using the .env.example template and add all required variables:
+
    ```env
     DJANGO_SETTINGS_MODULE='core.config.local' #for Dev environment
 
@@ -65,7 +66,14 @@ Before running the application, ensure you have the following:
     DB_USER=<enter username>
     DB_PASS=<enter password>
     DB_HOST=localhost
-    DB_PORT=5432 
+    DB_PORT=5432
+
+    SITE_URL='http://localhost:8000'
+
+    # Django smtp
+    EMAIL_HOST = 'smtp.gmail.com' # Example using Gmail
+    EMAIL_HOST_USER = 'enter your email'
+    EMAIL_HOST_PASSWORD = 'enter password' #for Gmail, generate app password
    ```
 
 5. Run the application in development mode:
@@ -76,34 +84,36 @@ Before running the application, ensure you have the following:
   python3 manage.py makemigrations # To compile the migrations
   python3 manage.py migrate  # To migrate the changes in Database
   python3 manage.py runserver # To run the API server
+  redis-server # to start redis-server
+  celery -A core worker -l info # to run celery
+  celery -A core beat -l info # to run celery beat
   ```
 
-- Start Client:
+- Start Research Client:
 
   ```bash
-  cd client # enter the client directory
-  npm install
-  npm install react-scripts@latest --legacy-peer-deps #to resolve dependency issues
-  npm run build
-  npm start # To run the the client server
+  cd research # enter the research directory
+  npm install pnpm # do this if you dont have pnpm installed
+  pnpm install
+  pnpm start # To run the the research server
   ```
 
 6. API Testing: `http://127.0.0.1:8000/api/<ROUTE>`
 
-   | Method |       Route       |     Description     |
-   | :----: | :---------------: | :-----------------: |
-   |  GET   |     articles/     |  List all articles  |
-   |  POST  |     articles/     |   Add an article    |
+   | Method |       Route        |     Description     |
+   | :----: | :----------------: | :-----------------: |
+   |  GET   |     articles/      |  List all articles  |
+   |  POST  |     articles/      |   Add an article    |
    |  GET   | articles/<uuid:pk> | Retrieve an article |
    | PATCH  | articles/<uuid:pk> |  Update an article  |
    | DELETE | articles/<uuid:pk> |  Delete an article  |
 
-7. Client Testing: `http://localhost:3000/<ROUTE>`
+7. Client Testing: `http://localhost:4321`
 
-   | Method |       Route       |     Description     |
-   | :----: | :---------------: | :-----------------: |
-   |  GET   | articles/         |  List all articles  |
-   |  GET   | articles/<uuid:pk> | Retrieve an article |
+   | Method |   Route   |     Description     |
+   | :----: | :-------: | :-----------------: |
+   |  GET   |     /     |  List all articles  |
+   |  GET   | <uuid:pk> | Retrieve an article |
 
 8. Model Testing: run `python manage.py test`
 
