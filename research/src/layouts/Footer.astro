@@ -132,62 +132,66 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('subscribe-form');
-
-            // Fetch CSRF token from Django backend
-            fetch('http://127.0.0.1:8000/get-csrf-token/')
-                .then(response => response.json())
-                .then(data => {
-                    const csrfToken = data.csrfToken;
-
-                    // Add CSRF token as a hidden input field
-                    if (form) {
-                        const input = document.createElement('input');
-                        input.type = 'hidden';
-                        input.name = 'csrfmiddlewaretoken';
-                        input.value = csrfToken;
-                        form.appendChild(input);
-                    }
-                })
-                .catch(error => console.error('Error fetching CSRF token:', error));
-
-            // Handle form submission
-            if (form) {
-                form.addEventListener('submit', function(event) {
-                    event.preventDefault();
-
-                    const formData = new FormData(form);
-                    const csrfToken = form.querySelector('input[name="csrfmiddlewaretoken"]').value;
-
-                    fetch(form.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'X-CSRFToken': csrfToken,
-                        },
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        const messageElement = document.getElementById('response-message');
-                        if (data.status === 'error') {
-                            messageElement.textContent = data.message || 'An error occurred. Please try again.';
-                            messageElement.style.color = 'red';
-                        } else {
-                            messageElement.textContent = 'Subscription successful!';
-                            messageElement.style.color = 'green';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error during form submission:', error);
-                        const messageElement = document.getElementById('response-message');
-                        messageElement.textContent = 'An error occurred. Please try again.';
-                        messageElement.style.color = 'red';
-                    });
-                });
-            }
-        });
-    </script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const form = document.getElementById('subscribe-form');
+  
+          // Fetch CSRF token from Django backend and handle form submission
+          if (form) {
+              fetch('http://127.0.0.1:8000/get-csrf-token/')
+                  .then(response => response.json())
+                  .then(data => {
+                      const csrfToken = data.csrfToken;
+  
+                      // Add CSRF token as a hidden input field
+                      const input = document.createElement('input');
+                      input.type = 'hidden';
+                      input.name = 'csrfmiddlewaretoken';
+                      input.value = csrfToken;
+                      form.appendChild(input);
+  
+                      // Handle form submission
+                      form.addEventListener('submit', function(event) {
+                          event.preventDefault();
+  
+                          const formData = new FormData(form);
+  
+                          fetch(form.action, {
+                              method: 'POST',
+                              body: formData,
+                              headers: {
+                                  'X-CSRFToken': csrfToken,
+                              },
+                          })
+                          .then(response => {
+                              if (response.ok) {
+                                  return response.json();
+                              } else {
+                                  return response.json().then(data => {
+                                      throw new Error(data.message || 'An error occurred');
+                                  });
+                              }
+                          })
+                          .then(data => {
+                              const messageElement = document.getElementById('response-message');
+                              messageElement.textContent = 'Subscription successful!';
+                              messageElement.style.color = 'green';
+                          })
+                          .catch(error => {
+                              const messageElement = document.getElementById('response-message');
+                              messageElement.textContent = error.message || 'An error occurred. Please try again.';
+                              messageElement.style.color = 'red';
+                          });
+                      });
+                  })
+                  .catch(error => {
+                      console.error('Error fetching CSRF token:', error);
+                      const messageElement = document.getElementById('response-message');
+                      messageElement.textContent = 'An error occurred while fetching the CSRF token. Please try again.';
+                      messageElement.style.color = 'red';
+                  });
+          }
+      });
+  </script>
 </div>
 
 
