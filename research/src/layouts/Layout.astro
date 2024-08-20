@@ -53,9 +53,10 @@ const _ogImage = new URL(
   };
 </script>
 
-<BaseHead ogImage={_ogImage} title={title} description={description} />
-<Header />
-<body>
-  <slot />
-</body>
-<Footer />
+<html lang="en" class="h-full">
+  <BaseHead ogImage={_ogImage} title={title} description={description} />
+  <Header />
+  <body>
+    <slot />
+  </body><Footer />
+</html>

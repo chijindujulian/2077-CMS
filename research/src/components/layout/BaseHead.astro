@@ -1,5 +1,5 @@
 ---
-// @ts-ignore: Cannot find module 'astro:transitions' or its corresponding type declarations
+// @ts-ignore: Cannot find module 'astro:transitions'
 import { ViewTransitions } from "astro:transitions";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 //const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 Astro.props.ogImage ??= new URL(
-  `${Astro.url.origin}/assets/EIPsForNerds7-EIP-7657(SyncCommitteeSlashings).webp`
+  `${Astro.url.origin}/assets/EIPsForNerds7-EIP-7657(SyncCommitteeSlashings).webp`,
 );
 
 const { title, description, ogImage } = Astro.props;
@@ -39,11 +39,60 @@ const { title, description, ogImage } = Astro.props;
 
   <!--<link rel="canonical" href={canonicalURL} /> -->
   <link rel="icon" type="image/svg" href="/favicon.svg" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Avenir:wght@100;200;300;400;500;600;700;800;900&display=swap">
 
-  <script is:inline defer data-domain="research.2077.xyz" src="https://plausible.io/js/script.outbound-links.js"></script>
+  
+  <script is:inline>
+    const theme = () => {
+      let btn = document.querySelector("#btn");
+      let btn_mobile = document.querySelector("#btn-mobile");
+      const toggleDarkMode = () => {
+        document.documentElement.classList.toggle("dark");
+        const isDarkMode = document.documentElement.classList.contains("dark");
+        localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+      };
+      btn.addEventListener("click", toggleDarkMode);
+      btn_mobile.addEventListener("click", toggleDarkMode);
+    };
 
+    theme();
+
+    document.addEventListener("astro:after-swap", theme);
+  </script>
+
+  <script
+    is:inline
+    defer
+    data-domain="research.2077.xyz"
+    src="https://plausible.io/js/script.outbound-links.js">
+  </script>
 
   <title>{title}</title>
 
   <ViewTransitions />
+
 </head>
+
+<style is:global>
+  body {
+    background: white;
+    color: black;
+    //padding: 2em;
+    padding-block-start: 0;
+    font-family: "avenir-book", sans-serif;
+    line-height: 1.7;
+  }
+
+  .dark {
+    body {
+      background: black;
+      color: white;
+
+      header {
+        a.button-primary {
+          color: var(--color-dark);
+        }
+      }
+    }
+  }
+</style>

@@ -1,21 +1,23 @@
 <header class="py-8 px-6 lg:px-32 max-w-screen-3xl m-auto">
-  <nav class="flex justify-between" <div class="">
+  <nav class="flex justify-between">
+    
     <div>
-      <a href="/" class="">
+      <a href="/" class="logo block light dark:hidden">
         <img src="/logo-black.webp" alt="" width="197" height="58" />
       </a>
-      <a href="/" class="hidden">
+      <a href="/" class="logo hidden dark dark:block">
         <img src="/logo-white.webp" alt="" width="197" height="58" />
       </a>
     </div>
+
     <div class="flex items-center">
       <button
         id="btn"
-        class="h-12 w-12 rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700 lg:pr-16"
+        class="h-12 w-12 rounded-lg pr-8 hover:bg-gray-100 dark:hover:bg-gray-700"
       >
         <svg
           id="dark-icon"
-          class="fill-slate-700"
+          class="fill-slate-700 block dark:hidden dark"
           width="24"
           height="24"
           viewBox="0 0 24 24"
@@ -36,7 +38,7 @@
 
         <svg
           id="light-icon"
-          class="fill-yellow-500 hidden"
+          class="fill-yellow-500 hidden dark:block light"
           width="24"
           height="24"
           viewBox="0 0 24 24"
@@ -84,7 +86,6 @@
       </button>
 
       <div class="hidden lg:flex items-center gap-x-8">
-
         <div class="dropdown">
           <button
             onclick="myFunction()"
@@ -143,12 +144,16 @@
             </span>
           </button>
 
-          <div id="myDropdown" class="dropdown-content rounded bg-black sidebar p-4 mt-4">
+          <div
+            id="myDropdown"
+            class="dropdown-content rounded bg-black sidebar p-4 mt-4"
+          >
             <a
               href="https://eip2077.info"
               target="_blank"
-              class="block px-4 py-2 hover:bg-[#C6FF50] text-white hover:text-gray-700 hover:rounded"
-              >EIP-2077</a>
+              class="block px-4 py-2 hover:bg-green text-white hover:text-black hover:rounded"
+              >EIP-2077</a
+            >
             <a
               href="https://eips.wiki"
               target="_blank"
@@ -170,12 +175,12 @@
           </div>
         </div>
 
-        <a href="https://2077.xyz/support" class="hover:text-[#C6FF50]"
+        <a href="https://2077.xyz/support" class="hover:text-green"
           >Support us</a
         >
         <a
           href="#subscribe"
-          class="bg-[#91b208] text-white px-8 py-2 rounded font-bold"
+          class="bg-green text-white dark:bg-greenLm dark:text-black px-8 py-2 rounded font-bold"
         >
           Subscribe
         </a>
@@ -184,7 +189,8 @@
   </nav>
 </header>
 
-<style>
+<style is:global>
+
   .sidebar {
     clip-path: polygon(30px 0, 100% 0, 280% 0px, 80% 100%, 0 100%, 0 30px);
     display: none;

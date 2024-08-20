@@ -32,31 +32,44 @@ try {
 >
   <main class="max-w-screen-3xl m-auto">
     <section class="pt-8 px-6 lg:px-32">
-      <div class="mb-8">
-        <h1>Research</h1>
+      <div class="mb-16">
+        <h1 class="font-avenir text-6xl font-bold uppercase mb-4">Research</h1>
         <p>
           Deep dives and technical analyses on Ethereum, infrastructure,
           protocols, and applications
         </p>
       </div>
       <div class="flex justify-between">
-        <div class="hidden lg:flex pr-12 xl:w-1/6">
-          <ul class="">
-            {Array.from(new Set(articles.flatMap((article) => article.categories.map((category) => category.name)))).map((category) => (
-              <li class="pb-4">
-                <a href={`/categories/${category}`}>{category}</a>
-              </li>
-            ))}
-          </ul>
+        <div
+          class="menu hidden bg-black lg:block mr-12 rounded-xl xl:w-1/6 h-[520px]"
+        >
+          <div class="pt-8 px-8 flex flex-col gap-6">
+            {
+              Array.from(
+                new Set(
+                  articles.flatMap((article) =>
+                    article.categories.map((category) => category.name),
+                  ),
+                ),
+              ).map((category) => (
+                <a
+                  class="block px-4 py-4 text-white hover:text-black hover:bg-greenLm hover:rounded"
+                  href={`/categories/${category}`}
+                >
+                  {category}
+                </a>
+              ))
+            }
+          </div>
         </div>
         <ul
           class="mb-32 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12 xl:w-5/6"
         >
           {
             articles.map((article: Article) => (
-              <li class="mb-6" data-key={article.id}>
+              <li class="flex flex-col gap-y-1 mb-6" data-key={article.id}>
                 <img src={`${article.thumb}`} alt="" width="720" height="480" />
-                <ul>
+                <ul class="flex gap-x-2 py-2">
                   {article?.categories.map((category) => (
                     <li>
                       <a href={`/categories/${category.name}`}>
@@ -65,16 +78,39 @@ try {
                     </li>
                   ))}
                 </ul>
-                <h2>{article.title}</h2>
-                <>
-                  <p>{article.summary}</p>
-                  <a class="bg-transparent hover:text-[#C6FF50]" href={`/${article.id}`}>Read post &rarr;</a>
-                </>
+                <h2 class="mb-2">{article.title}</h2>
+                <p class="mb-4">{article.summary}</p>
+                <a
+                  class="bg-transparent hover:text-[#C6FF50]"
+                  href={`/${article.id}`}
+                >
+                  Read post &rarr;
+                </a>
               </li>
             ))
           }
         </ul>
       </div>
+      <div class="mt-4 mb-48 text-center">
+        <a href="">read more</a>
+      </div>
     </section>
   </main>
 </Layout>
+
+<style is:global>
+  
+  .menu {
+    clip-path: polygon(30px 0, 100% 0, 290% 20px, 85% 100%, 0 100%, 0 30px);
+
+    a {
+      clip-path: polygon(30px 0, 100% 0, 110% 20px, 85% 100%, 0 100%, 0 30px);
+    }
+  }
+
+  .categories-link.active,
+  .categories-link.all-link,
+  .categories-link:hover {
+    clip-path: polygon(30px 0, 100% 0, 110% 20px, 85% 100%, 0 100%, 0 30px);
+  }
+</style>

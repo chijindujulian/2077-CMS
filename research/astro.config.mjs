@@ -6,6 +6,7 @@ import node from "@astrojs/node";
 export default defineConfig({
   integrations: [tailwind()],
   output: "server",
+  darkMode: 'selector',
   adapter: node({
     mode: "standalone"
   }),
