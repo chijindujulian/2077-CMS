@@ -1,23 +1,22 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render
+from django.http import JsonResponse
 from .models import Subscriber
-from .forms import SubscribeForm
 from django.views.decorators.csrf import csrf_exempt
+from django.db import IntegrityError
 
 
-@csrf_exempt  # Only use this if you can't handle CSRF token in your frontend
+@csrf_exempt  
 def subscribe(request):
     if request.method == 'POST':
-        form = SubscribeForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            Subscriber.objects.create(email=email)
-            return HttpResponse('You have successfully subscribed.')
-    else:
-        form = SubscribeForm()
-
-    return render(request, 'newsletter/subscribe.html', {'form': form})
-
+        email = request.POST.get('email')
+        if not email:
+            return JsonResponse({'message': 'Email is required'}, status=400)
+        
+        try:
+            Subscriber.objects.create(email=email, is_active=True)
+            return JsonResponse({'message': 'Subscription successful'}, status=200)
+        except IntegrityError:
+            return JsonResponse({'message': 'Email already subscribed'}, status=400)
 def unsubscribe(request, email):
     try:
         subscriber = Subscriber.objects.get(email=email)
