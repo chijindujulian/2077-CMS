@@ -99,23 +99,97 @@
     </div>
   </div>
 
-  <div class="flex items-center justify-center" id="subscribe">
+  <div class="flex items-center justify-center text-white" id="subscribe">
     <div class="text-center flex flex-col justify-center gap-4 w-max">
-      <div>
-        <h3>Your Ethereum Edge</h3><p>
-          Get first-hand research delivered by our team of experts.
-        </p>
-      </div><div class="flex justify-center">
-        <input
-          type="email"
-          class="outline-none rounded-l bg-black border border-white w-max-content p-2 text-sm w-full border-r-none"
-          value=""
-        /><button
-          class="rounded-r bg-[#91b208] px-4 py-2 font-bold min-w-[110px] min-h-[42px]"
-          >Subscribe</button>
-      </div><span class="text-sm"></span>
+        <div>
+            <h3>Your Ethereum Edge</h3>
+            <p class="text-white">
+                Get first-hand research delivered by our team of experts.
+            </p>
+        </div>
+        <form
+            action="http://127.0.0.1:8000/newsletter/subscribe/"
+            method="post"
+            id="subscribe-form"
+            class="flex justify-center"
+        >
+            <!-- CSRF token will be added dynamically -->
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+                class="outline-none rounded-l bg-white border border-black w-max-content p-2 text-sm w-full border-r-none text-black"
+            />
+            <button
+                type="submit"
+                class="rounded-r bg-[#91b208] px-4 py-2 font-bold min-w-[110px] min-h-[42px] text-white"
+            >
+                Subscribe
+            </button>
+        </form>
+        <span id="response-message" class="text-sm"></span>
     </div>
-  </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('subscribe-form');
+
+            // Fetch CSRF token from Django backend
+            fetch('http://127.0.0.1:8000/get-csrf-token/')
+                .then(response => response.json())
+                .then(data => {
+                    const csrfToken = data.csrfToken;
+
+                    // Add CSRF token as a hidden input field
+                    if (form) {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = 'csrfmiddlewaretoken';
+                        input.value = csrfToken;
+                        form.appendChild(input);
+                    }
+                })
+                .catch(error => console.error('Error fetching CSRF token:', error));
+
+            // Handle form submission
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    const formData = new FormData(form);
+                    const csrfToken = form.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRFToken': csrfToken,
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        const messageElement = document.getElementById('response-message');
+                        if (data.status === 'error') {
+                            messageElement.textContent = data.message || 'An error occurred. Please try again.';
+                            messageElement.style.color = 'red';
+                        } else {
+                            messageElement.textContent = 'Subscription successful!';
+                            messageElement.style.color = 'green';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error during form submission:', error);
+                        const messageElement = document.getElementById('response-message');
+                        messageElement.textContent = 'An error occurred. Please try again.';
+                        messageElement.style.color = 'red';
+                    });
+                });
+            }
+        });
+    </script>
+</div>
+
 
   <div class="grid mt-16 flex justify-center">
     <a href="/" class="logo">
