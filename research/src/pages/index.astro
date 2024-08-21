@@ -21,17 +21,15 @@ try {
     <main class="max-w-screen-3xl m-auto mb-24">
         <section class="pt-8 px-6 lg:px-32">
             <div class="mb-16">
-                <h1 class="text-4xl uppercase mb-4">
-                    Research
-                </h1>
+                <h1 class="text-4xl uppercase mb-4">Research</h1>
                 <p class="text-xl font-bold">
                     Deep dives and technical analyses on Ethereum,
                     infrastructure, protocols, and applications
                 </p>
             </div>
             <div class="flex-col lg:flex-row flex justify-between">
-                <SideMenu client:load articles={articles}/>
-                <ArticleList client:load articles={articles}/>
+                <SideMenu client:load articles={articles} />
+                <ArticleList client:load articles={articles} />
             </div>
         </section>
     </main>
