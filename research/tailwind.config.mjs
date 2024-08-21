@@ -9,6 +9,8 @@ export default {
             white: '#efefef',
             green: '#C6FF50',
             greenLm: '#91b208',
+            'green-900': '#789d2c',
+            'gray-200': '#767676',
             gray: '#1b1b1b',
         },
         fontFamily: {
