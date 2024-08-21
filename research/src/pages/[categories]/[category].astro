@@ -14,6 +14,7 @@ interface Article {
     summary: string
     categories: Category[]
     thumb: string
+    slug: string
 }
 
 let articles: Article[] = []
@@ -40,14 +41,11 @@ try {
 >
     <main class="max-w-screen-3xl m-auto">
         <section class="pt-8 px-6 lg:px-32 mb-24">
-            <div class="mb-8">
-                <h1 class="">{category}</h1>
-            </div>
             <div class="flex justify-between">
                 <div
                     class="menu hidden lg:block bg-black text-white rounded-xl h-[520px] mr-12 xl:w-1/6"
                 >
-                    <div class="mt-16 px-8 flex flex-col">
+                    <div class="font-bold mt-16 px-8 flex flex-col">
                         {
                             Array.from(
                                 new Set(
@@ -78,15 +76,29 @@ try {
                     {
                         articles.map((article: Article) => (
                             <li data-key={article.id}>
-                                <img
-                                    src={`${article.thumb}`}
-                                    alt=""
-                                    width="720"
-                                    height="480"
-                                />
-                                <h2>{article.title}</h2>
-                                <p>{article.summary}</p>
-                                <a href={`/${article.id}`}>Read post &rarr;</a>
+                                <a class="bg-transparent" href={`/${article.slug}`}>
+                                    <img
+                                        src={`${article.thumb}`}
+                                        alt=""
+                                        width="720"
+                                        height="480"
+                                    />
+                                </a>
+                                    <ul class="flex py-2">
+                                        {article?.categories.map((category) => (
+                                            <li>
+                                                <a
+                                                    href={`/categories/${category.name}`}
+                                                    class="mr-2 font-bold flex items-center gap-0.5 text-sm bg-[#1B1B1B] text-[#C6FF50] max-w-fit-content px-2 py-1.5 rounded-md"
+                                                >
+                                                    {category.name}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <h2 class="mb-2 text-xl font-bold">{article.title}</h2>
+                                    <p class="text-lg text-gray-900 font-bold mb-4">{article.summary}</p>
+                                
                             </li>
                         ))
                     }
