@@ -48,21 +48,18 @@ try {
     console.error('Error fetching article:', error)
 }
 
-const created_at = article?.data.created_at;
-if (created_at !== undefined) {
-  const date = new Date(created_at);
-  const formattedDate = new Intl.DateTimeFormat("en-GB", {
+const formatDate = (dateString: string | undefined): string => {
+  if (!dateString) return '';
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
     year: "numeric",
-    month: "long",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
   }).format(date);
-  // Use the formattedDate variable in your JSX
-} else {
-  console.error("created_at is undefined");
-}
+};
+
+const created_at = article?.data.created_at;
+const formattedDate = formatDate(created_at);
 ---
 
 <Layout
@@ -101,7 +98,7 @@ if (created_at !== undefined) {
                             <div class="md:flex items-center justify-between">
                                 <div class="transition duration-300 pt-2 hover:text-[#c6ff50] text-[#a2a8ad] font-semibold">
                                     By {article.data?.authors.map((author) => author.username).join(', ')}
-                                    <span>{created_at}</span>
+                                    <span>{formattedDate}</span>
                                 </div>
                                 
 
