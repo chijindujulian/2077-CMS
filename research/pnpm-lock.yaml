@@ -20,6 +20,9 @@ dependencies:
   astro:
     specifier: ^4.14.2
     version: 4.14.2(sass@1.77.8)(typescript@5.5.4)
+  astro-social-share:
+    specifier: ^2.0.2
+    version: 2.0.2
   nanostores:
     specifier: ^0.11.2
     version: 0.11.2
@@ -1330,6 +1333,10 @@ packages:
 
   /array-iterate@2.0.1:
     resolution: {integrity: sha512-I1jXZMjAgCMmxT4qxXfPXa6SthSoE8h6gkSI9BGGNv8mP8G/v0blc+qFnZu6K42vTOiuME596QaLO0TP3Lk0xg==}
+    dev: false
+
+  /astro-social-share@2.0.2:
+    resolution: {integrity: sha512-bPeZUOzOTuXIJjVYmRrnsP8bK+qv3aviey+F8tFgG30rR1npc4SkyOb05hsp2BLuDci9kbuoHFW6Vr3L4ozjSw==}
     dev: false
 
   /astro@4.14.2(sass@1.77.8)(typescript@5.5.4):
