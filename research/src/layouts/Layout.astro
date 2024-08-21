@@ -17,29 +17,19 @@ const _ogImage = new URL(
 ---
 
 <script is:inline>
-    function myFunction() {
-        document.getElementById('myDropdown').classList.toggle('show')
-    }
-
-    /**Dropdown menu logic */
-    window.onclick = function (event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName('dropdown-content')
-            var i
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i]
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show')
-                }
-            }
-        }
+    // We need this script here to avoid flashing the light theme before the dark theme is applied
+    const theme = localStorage.getItem('theme')
+    if (theme === 'dark') {
+        document.documentElement.classList.add('dark')
+    } else {
+        document.documentElement.classList.remove('dark')
     }
 </script>
 
 <html lang="en" class="h-full">
     <BaseHead ogImage={_ogImage} title={title} description={description} />
-    <Header client:load />
-    <body class="bg-white min-h-screen">
+    <Header client:only />
+    <body class="bg-white dark:bg-black dark:text-white min-h-screen">
         <slot />
     </body><Footer />
 </html>
