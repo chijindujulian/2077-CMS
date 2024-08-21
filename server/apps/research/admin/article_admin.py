@@ -6,7 +6,9 @@ from apps.research.models import Article, Author
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     """Admin interface for the Article model."""
-    
+    class Media:
+        # Reference the JavaScript file
+        js = ('ckeditor/js/custom_ckeditor_admin.js',)
     fieldsets = [
         ('Article Details', {'fields': ['title', 'authors', 'categories', 'thumb', 'content', 'summary', 'status', 'scheduled_publish_time']}),
     ]
