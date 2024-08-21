@@ -39,7 +39,7 @@ const _ogImage = new URL(
 <html lang="en" class="h-full">
     <BaseHead ogImage={_ogImage} title={title} description={description} />
     <Header client:load />
-    <body class="bg-white">
+    <body class="bg-white min-h-screen">
         <slot />
     </body>
     <Footer />
@@ -100,7 +100,7 @@ h1, h2, h3 {
     font-family: 'avenir_black';
 }
 
-p, a, span, ul, li, button, input {
+p, a, ul, li, button, input {
     font-family: 'avenir_book';
 }
 
