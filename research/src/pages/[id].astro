@@ -97,7 +97,7 @@ const formattedDate = formatDate(created_at);
 
                             <div class="md:flex items-center justify-between">
                                 <div class="transition duration-300 pt-2 hover:text-[#c6ff50] text-[#a2a8ad] font-semibold">
-                                    By {article.data?.authors.map((author) => author.username).join(', ')}
+                                    <span>By</span> <span>{article.data?.authors.map((author) => author.username).join(', ')}</span>
                                     <span>{formattedDate}</span>
                                 </div>
                                 
