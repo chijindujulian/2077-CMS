@@ -20,9 +20,9 @@ class Article(BaseModel):
         ('ready', 'Ready'),
     )
 
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=500)
     content = CKEditor5Field('Text', null=True, blank=True, config_name='extends')
-    summary = models.CharField(max_length=100, blank=True)
+    summary = models.CharField(max_length=1000, blank=True)
     authors = models.ManyToManyField(Author, blank=True, related_name='articles')
     slug = models.SlugField(blank=True)
     categories = models.ManyToManyField(Category, blank=True, related_name='articles')
