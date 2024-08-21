@@ -160,7 +160,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_URL = 'https://cms.2077.xyz/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
