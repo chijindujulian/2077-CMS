@@ -76,7 +76,10 @@ try {
                     {
                         articles.map((article: Article) => (
                             <li data-key={article.id}>
-                                <a class="bg-transparent" href={`/${article.slug}`}>
+                                <a
+                                    class="bg-transparent"
+                                    href={`/${article.slug}`}
+                                >
                                     <img
                                         src={`${article.thumb}`}
                                         alt=""
@@ -84,21 +87,24 @@ try {
                                         height="480"
                                     />
                                 </a>
-                                    <ul class="flex py-2">
-                                        {article?.categories.map((category) => (
-                                            <li>
-                                                <a
-                                                    href={`/categories/${category.name}`}
-                                                    class="mr-2 font-bold flex items-center gap-0.5 text-sm bg-[#1B1B1B] text-[#C6FF50] max-w-fit-content px-2 py-1.5 rounded-md"
-                                                >
-                                                    {category.name}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <h2 class="mb-2 text-xl font-bold">{article.title}</h2>
-                                    <p class="text-lg text-gray-900 font-bold mb-4">{article.summary}</p>
-                                
+                                <ul class="flex py-2">
+                                    {article?.categories.map((category) => (
+                                        <li>
+                                            <a
+                                                href={`/categories/${category.name}`}
+                                                class="mr-2 font-bold flex items-center gap-0.5 text-sm bg-[#1B1B1B] text-[#C6FF50] max-w-fit-content px-2 py-1.5 rounded-md"
+                                            >
+                                                {category.name}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <h2 class="mb-2 text-xl font-bold">
+                                    {article.title}
+                                </h2>
+                                <p class="text-lg text-gray-900 font-bold mb-4">
+                                    {article.summary}
+                                </p>
                             </li>
                         ))
                     }

@@ -1,23 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro'
-
-interface Category {
-    name: string
-}
-
-interface Article {
-    id: string
-    title: string
-    authors: { username: string }[]
-    content: string
-    views: string
-    summary: string
-    categories: Category[]
-    thumb: {
-        url: string
-    }
-    slug: string
-}
+import { type Article } from '../types/article'
+import SideMenu from '../components/SideMenu.svelte'
+import ArticleList from '../components/ArticleList.svelte'
 
 let articles: Article[] = []
 
@@ -35,78 +20,16 @@ try {
 >
     <main class="max-w-screen-3xl m-auto mb-24">
         <section class="pt-8 px-6 lg:px-32">
-            <div class="mb-16">
-                <h1 class="text-6xl uppercase mb-4">
-                    Research
-                </h1>
-                <p class="text-2xl font-bold">
+            <div class="mb-8 lg:mb-16">
+                <h1 class="text-4xl uppercase mb-4">Research</h1>
+                <p class="text-xl font-bold">
                     Deep dives and technical analyses on Ethereum,
                     infrastructure, protocols, and applications
                 </p>
             </div>
-            <div class="flex justify-between">
-                <div
-                    class="menu hidden dark:bg-gray bg-black lg:block mr-12 rounded-xl xl:w-1/6 h-[520px]"
-                >
-                    <div class=" font-bold pt-8 px-8 flex flex-col gap-6">
-                        {
-                            Array.from(
-                                new Set(
-                                    articles.flatMap((article) =>
-                                        article.categories.map(
-                                            (category) => category.name,
-                                        ),
-                                    ),
-                                ),
-                            ).map((category) => (
-                                <a
-                                    class="block px-4 py-4 text-white hover:text-black hover:bg-greenLm hover:rounded"
-                                    href={`/categories/${category}`}
-                                >
-                                    {category}
-                                </a>
-                            ))
-                        }
-                    </div>
-                </div>
-                <ul
-                    class="mb-32 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-4 xl:w-5/6"
-                >
-                    {
-                        articles.map((article: Article) => (
-                            <li
-                                class="flex flex-col gap-y-1"
-                                data-key={article.id}
-                            >
-                                <a
-                                    class="bg-transparent"
-                                    href={`/${article.slug}`}
-                                >
-                                <img
-                                    src={`${article.thumb}`}
-                                    alt=""
-                                    width="720"
-                                    height="480"
-                                />
-                                <ul class="flex py-2">
-                                    {article?.categories.map((category) => (
-                                        <li>
-                                            <a
-                                                href={`/categories/${category.name}`}
-                                                class="mr-2 font-bold flex items-center gap-0.5 text-sm bg-[#1B1B1B] text-[#C6FF50] max-w-fit-content px-2 py-1.5 rounded-md"
-                                            >
-                                                {category.name}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                                <h2 class="mb-2 text-xl font-bold">{article.title}</h2>
-                                <p class="text-lg text-gray-900 font-bold mb-4">{article.summary}</p>
-                                </a>
-                            </li>
-                        ))
-                    }
-                </ul>
+            <div class="flex-col lg:flex-row flex justify-between">
+                <SideMenu client:load articles={articles} />
+                <ArticleList client:load articles={articles} />
             </div>
         </section>
     </main>

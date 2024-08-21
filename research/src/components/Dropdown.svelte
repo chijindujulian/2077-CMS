@@ -1,5 +1,7 @@
 <div class="group flex flex-col relative">
-    <button class="dropbtn flex gap-x-2 items-center hover:text-[#C6FF50]">
+    <button
+        class="dropbtn flex gap-x-2 items-center hover:text-greenLm hover:text-greenLm dark:hover:text-green"
+    >
         Resources
         <span class="">
             <svg

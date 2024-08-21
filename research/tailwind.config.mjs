@@ -10,10 +10,10 @@ export default {
             green: '#C6FF50',
             greenLm: '#91b208',
             'green-900': '#789d2c',
+            'gray-100': '#BDBDBD',
             'gray-200': '#767676',
             gray: '#1b1b1b',
             'gray-900': '#55565A',
-            
         },
         fontFamily: {
             sans: ['Graphik', 'sans-serif'],

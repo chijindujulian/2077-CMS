@@ -17,91 +17,86 @@ const _ogImage = new URL(
 ---
 
 <script is:inline>
-    function myFunction() {
-        document.getElementById('myDropdown').classList.toggle('show')
-    }
-
-    /**Dropdown menu logic */
-    window.onclick = function (event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName('dropdown-content')
-            var i
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i]
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show')
-                }
-            }
-        }
+    // We need this script here to avoid flashing the light theme before the dark theme is applied
+    const theme = localStorage.getItem('theme')
+    if (theme === 'dark') {
+        document.documentElement.classList.add('dark')
+    } else {
+        document.documentElement.classList.remove('dark')
     }
 </script>
 
 <html lang="en" class="h-full">
     <BaseHead ogImage={_ogImage} title={title} description={description} />
-    <Header client:load />
-    <body class="bg-white">
+    <Header client:only />
+    <body class="bg-white dark:bg-black dark:text-white min-h-screen">
         <slot />
-    </body>
-    <Footer />
+    </body><Footer />
 </html>
 
 <style is:global>
-@font-face {
-    font-family: 'avenir_black';
-    src:
-        url('/fonts/avenirltstd-black-webfont.woff2') format('woff2'),
-        url('/fonts/avenirltstd-black-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+    @font-face {
+        font-family: 'avenir_black';
+        src:
+            url('/fonts/avenirltstd-black-webfont.woff2') format('woff2'),
+            url('/fonts/avenirltstd-black-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
 
-@font-face {
-    font-family: 'avenir_book';
-    src:
-        url('/fonts/avenirltstd-book-webfont.woff2') format('woff2'),
-        url('/fonts/avenirltstd-book-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+    @font-face {
+        font-family: 'avenir_book';
+        src:
+            url('/fonts/avenirltstd-book-webfont.woff2') format('woff2'),
+            url('/fonts/avenirltstd-book-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
 
-@font-face {
-    font-family: 'avenir_heavy';
-    src:
-        url('/fonts/avenirltstd-heavy-webfont.woff2') format('woff2'),
-        url('/fonts/avenirltstd-heavy-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+    @font-face {
+        font-family: 'avenir_heavy';
+        src:
+            url('/fonts/avenirltstd-heavy-webfont.woff2') format('woff2'),
+            url('/fonts/avenirltstd-heavy-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
 
-@font-face {
-    font-family: 'avenir_medium';
-    src:
-        url('/fonts/avenirltstd-medium-webfont.woff2') format('woff2'),
-        url('/fonts/avenirltstd-medium-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+    @font-face {
+        font-family: 'avenir_medium';
+        src:
+            url('/fonts/avenirltstd-medium-webfont.woff2') format('woff2'),
+            url('/fonts/avenirltstd-medium-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
 
-@font-face {
-    font-family: 'avenir_lt_std55_roman';
-    src:
-        url('/fonts/avenirltstd-roman-webfont.woff2') format('woff2'),
-        url('/fonts/avenirltstd-roman-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+    @font-face {
+        font-family: 'avenir_lt_std55_roman';
+        src:
+            url('/fonts/avenirltstd-roman-webfont.woff2') format('woff2'),
+            url('/fonts/avenirltstd-roman-webfont.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
 
-h1, h2, h3 {
-    font-family: 'avenir_black';
-}
+    h1,
+    h2,
+    h3 {
+        font-family: 'avenir_black';
+    }
 
-p, a, span, ul, li, button, input {
-    font-family: 'avenir_book';
-}
-
+    p,
+    a,
+    ul,
+    li,
+    button,
+    input {
+        font-family: 'avenir_book';
+    }
 </style>

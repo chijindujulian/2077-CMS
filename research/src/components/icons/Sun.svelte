@@ -1,7 +1,11 @@
+<script lang="ts">
+    export let size = '24px'
+</script>
+
 <svg
     class="fill-yellow-500"
-    width="24"
-    height="24"
+    style:width={size}
+    style:height={size}
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
