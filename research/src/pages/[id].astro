@@ -15,6 +15,7 @@ interface ArticleData {
     categories: Category[]
     thumb: string
     description?: string
+    created_at: string
 }
 
 interface Article {
@@ -24,6 +25,7 @@ interface Article {
 
 const id = Astro.params.id
 let article: Article | null = null
+
 
 try {
     const response = await fetch(`https://cms.2077.xyz/api/articles/${id}`)
@@ -39,6 +41,22 @@ try {
     }
 } catch (error) {
     console.error('Error fetching article:', error)
+}
+
+const created_at = article?.data.created_at;
+if (created_at !== undefined) {
+  const date = new Date(created_at);
+  const formattedDate = new Intl.DateTimeFormat("en-GB", {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  }).format(date);
+  // Use the formattedDate variable in your JSX
+} else {
+  console.error("created_at is undefined");
 }
 ---
 
@@ -79,6 +97,7 @@ try {
                                 <div class="transition duration-300 hover:text-[#c6ff50] mb-2 text-[#a2a8ad] font-semibold">
                                     By {article.data?.authors.map((author) => author.username).join(', ')}
                                 </div>
+                                <span>{created_at}</span>
                             </div>
 
                             <div class="flex justify-center py-8">
@@ -90,7 +109,7 @@ try {
                                 />
                             </div>
                             <div
-                                class="
+                                class=" text-red
                                 max-w-screen-lg m-auto flex flex-col gap-y-4 mb-32 dark:text-white
                                 [&>p>a]:text-green-900 [&>p>a]:font-semibold
                                 [&>h1]:text-3xl [&>h2]:text-2xl [&>h3]:text-xl [&>h4]:text-lg [&>h1]:font-semibold
@@ -121,4 +140,8 @@ try {
         </article>
     </main>
 </Layout>
+
+<style is:global>
+    
+</style>
 
