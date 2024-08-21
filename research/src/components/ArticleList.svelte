@@ -24,7 +24,7 @@
     {#each filteredArticles as article (article.id)}
         <li class="flex flex-col gap-y-1">
             <a class="bg-transparent" href={`/${article.slug}`}>
-                <img src={article.thumb.url} alt="" width="720" height="480" />
+                <img src={article.thumb} alt="" width="720" height="480" />
                 <ul class="flex py-2">
                     {#each article.categories as category}
                         <li>
