@@ -48,16 +48,19 @@ try {
 >
     <main class="max-w-screen-3xl m-auto">
         <article class="pt-8 px-6 lg:px-32">
-            <a href="/">Back</a>
+            <div class="mb-4">
+                <a href="/">&larr; Back</a>
+            </div>
             {
                 article ? (
                     <article>
                         <div>
-                            <ul class="flex gap-x-2">
+                            <ul class="flex gap-x-2 mb-4">
                                 {article.data?.categories.map(
                                     (category: { name: string }) => (
                                         <li>
                                             <a
+                                                class="flex items-center gap-0.5 text-sm bg-[#1B1B1B] text-[#C6FF50] max-w-fit-content px-2 py-1.5 rounded-md"
                                                 href={`/categories/${category.name}`}
                                             >
                                                 {category.name}
@@ -66,8 +69,17 @@ try {
                                     ),
                                 )}
                             </ul>
-                            <h1>{article.data?.title}</h1>
-                            <p>{article.data?.summary}</p>
+
+                            <div class="flex flex-col gap-4 mb-2">
+                                <h1 class="text-5xl font-bold">{article.data?.title}</h1>
+                                <p>{article.data?.summary}</p>
+                            </div>
+
+                            <div>
+                                <div class="transition duration-300 hover:text-[#c6ff50] mb-2 text-[#a2a8ad] font-semibold">
+                                    By {article.data?.authors.map((author) => author.username).join(', ')}
+                                </div>
+                            </div>
 
                             <div class="flex justify-center py-8">
                                 <img
@@ -110,8 +122,3 @@ try {
     </main>
 </Layout>
 
-<style scoped>
-    p {
-        padding-block-end: 2rem;
-    }
-</style>
