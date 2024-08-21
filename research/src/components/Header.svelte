@@ -49,10 +49,10 @@
                 <Menu />
             </button>
 
-            <div class="hidden lg:flex items-center gap-x-8">
+            <div class="font-bold hidden lg:flex items-center gap-x-8">
                 <Dropdown />
 
-                <a href="https://2077.xyz/support" class="hover:text-green"
+                <a href="https://2077.xyz/support" class="font-bold hover:text-green"
                     >Support us</a
                 >
                 <a

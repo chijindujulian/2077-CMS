@@ -12,6 +12,8 @@ export default {
             'green-900': '#789d2c',
             'gray-200': '#767676',
             gray: '#1b1b1b',
+            'gray-900': '#55565A',
+            
         },
         fontFamily: {
             sans: ['Graphik', 'sans-serif'],

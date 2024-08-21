@@ -36,10 +36,10 @@ try {
     <main class="max-w-screen-3xl m-auto mb-24">
         <section class="pt-8 px-6 lg:px-32">
             <div class="mb-16">
-                <h1 class="font-avenir text-6xl font-bold uppercase mb-4">
+                <h1 class="text-6xl uppercase mb-4">
                     Research
                 </h1>
-                <p>
+                <p class="text-2xl font-bold">
                     Deep dives and technical analyses on Ethereum,
                     infrastructure, protocols, and applications
                 </p>
@@ -48,7 +48,7 @@ try {
                 <div
                     class="menu hidden dark:bg-gray bg-black lg:block mr-12 rounded-xl xl:w-1/6 h-[520px]"
                 >
-                    <div class="pt-8 px-8 flex flex-col gap-6">
+                    <div class=" font-bold pt-8 px-8 flex flex-col gap-6">
                         {
                             Array.from(
                                 new Set(
@@ -89,18 +89,19 @@ try {
                                     height="480"
                                 />
                                 <ul class="flex gap-x-2 py-2">
-                                    {article?.categories.map((category) => (
-                                        <li>
-                                            <div
-                                                class="flex items-center gap-0.5 text-sm bg-[#1B1B1B] text-[#C6FF50] max-w-fit-content px-2 py-1.5 rounded-md"
-                                            >
-                                                {category.name}
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ul>
+    {article?.categories.map((category) => (
+        <li>
+            <a
+                href={`/categories/${category.name}`}
+                class="font-bold flex items-center gap-0.5 text-sm bg-[#1B1B1B] text-[#C6FF50] max-w-fit-content px-2 py-1.5 rounded-md"
+            >
+                {category.name}
+            </a>
+        </li>
+    ))}
+</ul>
                                 <h2 class="mb-2 text-xl font-bold">{article.title}</h2>
-                                <p class="mb-4">{article.summary}</p>
+                                <p class="text-lg text-gray-900 font-bold mb-4">{article.summary}</p>
                                 </a>
                             </li>
                         ))
