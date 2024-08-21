@@ -57,7 +57,7 @@
                 >
                 <a
                     href="#subscribe"
-                    class="font-bold bg-greenLm text-black px-8 py-2 rounded font-bold"
+                    class="bg-greenLm text-black px-8 py-2 rounded font-bold"
                 >
                     Subscribe
                 </a>
