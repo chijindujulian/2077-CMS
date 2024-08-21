@@ -43,9 +43,13 @@
     </div>
 </div>
 
-<div class="flex gap-2 block lg:hidden mb-8">
+<div class="flex flex-wrap gap-2 block lg:hidden mb-8">
     <button
-        class="mr-2 font-bold flex items-center gap-0.5 text-sm bg-[#1B1B1B] text-gray-100 w-fit px-2 py-1.5 rounded-md hover:text-green hover:bg-black"
+        class="
+            mr-2 font-bold flex items-center gap-0.5 text-sm bg-[#1B1B1B]
+            text-gray-100 min-w-fit px-2 py-1.5 rounded-md hover:text-green
+            hover:bg-black
+        "
         class:text-green={$categories.length === 0}
         on:click={() => clearCategories()}
     >
@@ -53,7 +57,11 @@
     </button>
     {#each availableCategories as category}
         <button
-            class="mr-2 font-bold flex items-center gap-0.5 text-sm bg-[#1B1B1B] text-gray-100 w-fit px-2 py-1.5 rounded-md hover:text-green hover:bg-black"
+            class="
+                mr-2 font-bold flex items-center gap-0.5 text-sm bg-[#1B1B1B]
+                text-gray-100 min-w-fit px-2 py-1.5 rounded-md hover:text-green
+                hover:bg-black
+            "
             class:text-green={$categories.includes(category)}
             on:click={() => toggleCategory(category)}
         >
