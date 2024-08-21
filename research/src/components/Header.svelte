@@ -1,14 +1,7 @@
 <script lang="ts">
-    import Sun from './icons/Sun.svelte'
-    import Moon from './icons/Moon.svelte'
     import MobileNav from './MobileNav.svelte'
     import Dropdown from './Dropdown.svelte'
-    import {
-        toggleTheme,
-        getTheme,
-        theme,
-        anotherStuff,
-    } from '../stores/theme.store'
+    import ToggleTheme from './ToggleTheme.svelte'
 </script>
 
 <header class="py-8 px-6 lg:px-32 max-w-screen-3xl m-auto w-full">
@@ -32,19 +25,7 @@
             </a>
         </div>
 
-        <div class="flex items-center">
-            <!-- <button
-                id="btn"
-                class="h-12 w-12 rounded-lg pr-8 hover:bg-gray-100 dark:hover:bg-gray-700"
-                on:click={toggleTheme}
-            >
-                {#if $theme === 'dark'}
-                    <Sun />
-                {:else}
-                    <Moon />
-                {/if}
-            </button> -->
-
+        <div class="flex items-center gap-0 md:gap-2 lg:gap-4">
             <MobileNav />
 
             <div class="font-bold hidden lg:flex items-center gap-x-8">
@@ -53,7 +34,8 @@
                 <a
                     href="https://2077.xyz/support"
                     target="_blank"
-                    class="font-bold hover:text-green">Support us</a
+                    class="font-bold hover:text-greenLm dark:hover:text-green"
+                    >Support us</a
                 >
                 <a
                     href="#subscribe"
@@ -62,6 +44,7 @@
                     Subscribe
                 </a>
             </div>
+            <ToggleTheme />
         </div>
     </nav>
 </header>

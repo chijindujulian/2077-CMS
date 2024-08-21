@@ -7,13 +7,9 @@ const Themes = {
 type Theme = (typeof Themes)[keyof typeof Themes]
 const LOCAL_STORAGE_KEY = 'theme'
 
-export const theme = atom<Theme>(Themes.Light)
-
-export const anotherStuff = atom<boolean>(false)
+export const theme = atom<Theme>(getLocalStorageTheme())
 
 export function toggleTheme() {
-    console.log('toggleTheme called')
-
     const currentTheme = localStorage.getItem(LOCAL_STORAGE_KEY)
 
     if (currentTheme === Themes.Dark || !currentTheme) {
@@ -29,4 +25,18 @@ export function toggleTheme() {
 
 export function getTheme() {
     return theme
+}
+
+function getLocalStorageTheme(): Theme {
+    const localStorageTheme = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (!localStorageTheme) {
+        return Themes.Light
+    }
+
+    if (localStorageTheme === Themes.Dark) {
+        return Themes.Dark
+    }
+
+    return Themes.Light
 }

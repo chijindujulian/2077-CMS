@@ -17,11 +17,12 @@
         on:click={() => (open = false)}
     ></button>
     <div
-        class="fixed inset-y-0 right-0 md:w-2/5 max-w-sm w-full max-w-full bg-white shadow-lg z-50 overflow-y-auto flex flex-col p-4"
+        class="fixed inset-y-0 right-0 md:w-2/5 max-w-sm w-full max-w-full bg-white dark:bg-gray shadow-lg z-50 overflow-y-auto flex flex-col p-4"
         transition:slide={{ duration: 300, easing: quintOut }}
     >
-        <button class="self-end text-gray-700" on:click={() => (open = false)}
-            >Close</button
+        <button
+            class="self-end text-gray-700 p-2"
+            on:click={() => (open = false)}>X</button
         >
         <div class="flex flex-col gap-4">
             <div>
