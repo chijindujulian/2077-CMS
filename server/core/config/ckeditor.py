@@ -1,11 +1,34 @@
 # CKEDITOR CONFIGS
 CKEDITOR_UPLOAD_PATH = "ckeditor_uploads/"
 
+iframeEditing = True
+removePlugins = 'link'
+allowedContent = True
+htmlEncodeOutput = True
+disallowedContent = {'script', 'iframe', 'javascript'}
+
 CKEDITOR_IMAGE_BACKEND = "pillow"
 
 CKEDITOR_5_ALLOW_ALL_FILE_TYPES = True
 
 CKEDITOR_5_CUSTOM_CSS = "custom.css"
+
+CKEDITOR_5_CUSTOM_JS = {
+    'pastefilter': '''
+        CKEDITOR.plugins.add('pastefilter', {
+          init: function(editor) {
+            editor.on('paste', function(evt) {
+              evt.preventDefault();
+              evt.stopPropagation();
+              var data = evt.data;
+              data.html = data.html.replace(/<a[^>]*>/g, function(match) {
+                return match.replace('href', 'data-href');
+              });
+            });
+          }
+        });
+    '''
+}
 
 customColorPalette = [
     {"color": "hsl(4, 90%, 58%)", "label": "Red"},
@@ -18,7 +41,28 @@ customColorPalette = [
 
 
 CKEDITOR_5_CONFIGS = {
-    'default': {        
+    'default': {
+        'paste': {
+            'forcePlainText': True,
+            'linkCreation': False,
+        }, 
+        'htmlSupport': {
+            'allow': [
+                'a',
+                # Other allowed HTML elements...
+            ],
+            'disallow': [
+                'a[href]',  # Disallow links with href attribute
+                # Other disallowed HTML elements...
+            ],
+        }, 
+        'extraPlugins': ','.join(['sourcearea']),
+        'removePlugins': 'Link',  # Disables automatic link handling
+        # other configurations...  
+        'link': {
+            'addTargetToExternalLinks': False,
+            'defaultProtocol': 'https://',  # Prevents redirection by controlling protocol behavior
+        },    
         "toolbar": [
             "heading",
             "|",
