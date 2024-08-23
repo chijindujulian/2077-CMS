@@ -3,6 +3,7 @@ from django.db.models import F
 from django.shortcuts import render
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from .utils import astro_proxy
 import uuid
 
 from .models import Article
@@ -10,7 +11,7 @@ from .permissions import ArticleUserWritePermission
 from .serializers import ArticleSerializer, ArticleCreateUpdateSerializer
 
 def index(request):
-    return render(request, 'index.html')
+    return astro_proxy(request)
 
 
 class ArticleViewSet(viewsets.ModelViewSet):
