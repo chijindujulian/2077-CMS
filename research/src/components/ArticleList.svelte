@@ -4,6 +4,7 @@
 
     export let articles: Article[]
     let filteredArticles: Article[]
+    let articleClicked: string | null = null
 
     $: {
         if ($categories.length === 0) {
@@ -22,7 +23,11 @@
     class="mb-32 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-8 xl:w-5/6"
 >
     {#each filteredArticles as article (article.id)}
-        <li class="flex flex-col gap-y-1 group cursor-pointer">
+        <li
+            class="flex flex-col gap-y-1 group cursor-pointer"
+            class:animate-pulse={articleClicked === article.id}
+            on:click={() => (articleClicked = article.id)}
+        >
             <a class="bg-transparent" href={`/${article.slug}`}>
                 <img
                     src={article.thumb}
@@ -33,7 +38,7 @@
                 />
                 <ul class="flex py-2">
                     {#each article.categories as category}
-                        <li>
+                        <li class="">
                             <a
                                 href={`/categories/${category.name}`}
                                 class="mr-2 font-bold flex items-center gap-0.5 text-sm bg-[#1B1B1B] text-[#C6FF50] max-w-fit-content px-2 py-1.5 rounded-md"
