@@ -3,13 +3,14 @@ from rest_framework.routers import DefaultRouter
 from .views import ArticleViewSet, index
 from django.conf import settings
 from django.conf.urls.static import static
-from .utils import astro_proxy
+from django.http import HttpResponse
+import requests
 
 router = DefaultRouter()
 router.register(r'articles', ArticleViewSet, basename='article')
 
 urlpatterns = [
-    path('', astro_proxy, name='astro_proxy'),  
+    path('', index, name='index'),
     path('api/', include(router.urls)),
     
     # Custom URL for retrieving articles by slug or UUID
