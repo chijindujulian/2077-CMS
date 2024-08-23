@@ -10,8 +10,6 @@ export interface Article {
     views: string
     summary: string
     categories: Category[]
-    thumb: {
-        url: string
-    }
+    thumb: string
     slug: string
 }

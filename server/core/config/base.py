@@ -190,3 +190,4 @@ from .jazzmin import *
 from .ckeditor import *
 from .celery_config import *
 from .mail import *
+

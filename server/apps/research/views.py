@@ -12,7 +12,6 @@ from .serializers import ArticleSerializer, ArticleCreateUpdateSerializer
 def index(request):
     return render(request, 'index.html')
 
-
 class ArticleViewSet(viewsets.ModelViewSet):
     """API endpoint for articles."""
     permission_classes = [ArticleUserWritePermission]
