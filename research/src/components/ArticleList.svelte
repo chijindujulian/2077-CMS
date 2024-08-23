@@ -20,7 +20,7 @@
 </script>
 
 <ul
-    class="mb-32 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-8 xl:w-5/6"
+    class="mb-32 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-10 xl:w-5/6"
 >
     {#each filteredArticles as article (article.id)}
         <li
@@ -41,7 +41,7 @@
                         <li class="">
                             <a
                                 href={`/categories/${category.name}`}
-                                class="mr-2 font-bold flex items-center gap-0.5 text-sm bg-[#1B1B1B] text-[#C6FF50] max-w-fit-content px-2 py-1.5 rounded-md"
+                                class="mr-2 flex items-center gap-0.5 text-[12px] bg-[#1B1B1B] text-[#C6FF50] max-w-fit-content px-2 py-1 rounded-md"
                             >
                                 {category.name}
                             </a>
@@ -49,11 +49,11 @@
                     {/each}
                 </ul>
                 <h2
-                    class="mb-2 text-lg font-bold underline decoration-white dark:decoration-black group-hover:decoration-black dark:group-hover:decoration-white transition-colors leading-6"
+                    class="mb-2 text-md font-semibold underline decoration-white dark:decoration-black group-hover:decoration-black dark:group-hover:decoration-white transition-colors leading-5"
                 >
                     {article.title}
                 </h2>
-                <p class="text-sm text-gray-900 font-bold">
+                <p class="text-sm text-gray-900 font-bold leading-17">
                     {article.summary}
                 </p>
             </a>
