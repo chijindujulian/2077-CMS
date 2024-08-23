@@ -19,12 +19,18 @@
 </script>
 
 <ul
-    class="mb-32 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-4 xl:w-5/6"
+    class="mb-32 grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-8 xl:w-5/6"
 >
     {#each filteredArticles as article (article.id)}
-        <li class="flex flex-col gap-y-1">
+        <li class="flex flex-col gap-y-1 group cursor-pointer">
             <a class="bg-transparent" href={`/${article.slug}`}>
-                <img src={article.thumb} alt="" width="720" height="480" />
+                <img
+                    src={article.thumb}
+                    alt=""
+                    width="720"
+                    height="480"
+                    class="group-hover:opacity-80 dark:group-hover:opacity-50 transition-opacity"
+                />
                 <ul class="flex py-2">
                     {#each article.categories as category}
                         <li>
@@ -37,8 +43,12 @@
                         </li>
                     {/each}
                 </ul>
-                <h2 class="mb-2 text-xl font-bold">{article.title}</h2>
-                <p class="text-lg text-gray-900 font-bold mb-4">
+                <h2
+                    class="mb-2 text-lg font-bold underline decoration-white dark:decoration-black group-hover:decoration-black dark:group-hover:decoration-white transition-colors leading-6"
+                >
+                    {article.title}
+                </h2>
+                <p class="text-sm text-gray-900 font-bold">
                     {article.summary}
                 </p>
             </a>
