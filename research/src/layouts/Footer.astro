@@ -141,7 +141,8 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                const form = document.getElementById('subscribe-form')
+                // TODO: this should be moved to another comp. along with the email form
+                const form = document.getElementById('subscribe-form') as HTMLFormElement | null
 
                 if (form) {
                     // Fetch CSRF token
