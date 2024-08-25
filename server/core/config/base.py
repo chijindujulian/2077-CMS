@@ -85,13 +85,11 @@ REST_FRAMEWORK = {
 # 'rest_framework.permissions.IsAdminUser',
 # 'rest_framework.permissions.IsAuthenticatedOrReadOnly',
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:8000",
-    "http://localhost:4321",    
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ALLOW_CREDENTIALS = True
+# This needs be false when not CORS_ALLOW_ALL_ORIGINS = True
+# If we need to allow credentials, we must specify the origin
+CORS_ALLOW_CREDENTIALS = False
 
 ROOT_URLCONF = 'core.urls'
 
