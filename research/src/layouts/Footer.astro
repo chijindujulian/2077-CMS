@@ -127,21 +127,22 @@
                     name="email"
                     placeholder="Enter your email"
                     required
-                    class="outline-none rounded-l bg-white border border-black w-max-content p-2 text-sm w-full border-r-none text-black"
+                    class="outline-none rounded-l bg-black border border-green w-max-content p-2 text-sm w-full border-r-none text-black"
                 />
                 <button
                     type="submit"
-                    class="rounded-r bg-[#91b208] px-4 py-2 font-bold min-w-[110px] min-h-[42px] text-white"
+                    class="rounded-r bg-green text-black px-4 py-2 font-bold min-w-[110px] min-h-[42px]"
                 >
                     Subscribe
                 </button>
             </form>
             <span id="response-message" class="text-sm"></span>
         </div>
-
+        
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                const form = document.getElementById('subscribe-form')
+                // TODO: this should be moved to another comp. along with the email form
+                const form = document.getElementById('subscribe-form') as HTMLFormElement | null
 
                 if (form) {
                     // Fetch CSRF token
