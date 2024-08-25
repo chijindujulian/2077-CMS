@@ -103,15 +103,15 @@ const formattedDate = formatDate(created_at)
 
                             <div class="mb-2 md:flex items-center justify-between">
                                 <div class="transition duration-300 pt-2 hover:text-[#c6ff50] text-[#a2a8ad]">
-                                    <div class="">
+                                    <div class="flex gap-x-2">
                                         <span>Written by:</span>{' '}
-                                    <span class="capitalize">
-                                        <a href="" class="text-underline">
-                                            {article.data?.authors
-                                            .map((author) => author.username)
-                                            .join(', ')}
-                                        </a>
-                                    </span>
+                                        <span class="flex gap-x-2 capitalize">
+                                            {article.data?.authors.map((author) => (
+                                                <a href={`https://twitter.com/${author.twitter_username}`} target="_blank" class="underline underline-offset-2">
+                                                    {author.username}
+                                                </a>
+                                            ))}
+                                        </span>
                                     </div>
 
                                     <div>
