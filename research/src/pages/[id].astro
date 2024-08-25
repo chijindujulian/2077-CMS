@@ -13,7 +13,10 @@ interface Category {
 interface ArticleData {
     id: string
     title: string
-    authors: { username: string }[]
+    authors: { 
+        username: string, 
+        twitter_username: string | null
+    }[]
     content: string
     views: string
     summary: string
@@ -103,9 +106,11 @@ const formattedDate = formatDate(created_at)
                                     <div class="">
                                         <span>Written by:</span>{' '}
                                     <span class="capitalize">
-                                        {article.data?.authors
+                                        <a href="" class="text-underline">
+                                            {article.data?.authors
                                             .map((author) => author.username)
                                             .join(', ')}
+                                        </a>
                                     </span>
                                     </div>
 
