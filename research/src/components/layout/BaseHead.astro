@@ -7,8 +7,6 @@ interface Props {
     ogImage?: URL
 }
 
-//const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
 Astro.props.ogImage ??= new URL(
     `${Astro.url.origin}/assets/EIPsForNerds7-EIP-7657(SyncCommitteeSlashings).webp`,
 )
