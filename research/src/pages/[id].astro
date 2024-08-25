@@ -13,7 +13,10 @@ interface Category {
 interface ArticleData {
     id: string
     title: string
-    authors: { username: string }[]
+    authors: { 
+        username: string, 
+        twitter_username: string | null
+    }[]
     content: string
     views: string
     summary: string
@@ -98,15 +101,22 @@ const formattedDate = formatDate(created_at)
                                 </p>
                             </div>
 
-                            <div class="md:flex items-center justify-between">
-                                <div class="transition duration-300 pt-2 hover:text-[#c6ff50] text-[#a2a8ad] font-semibold">
-                                    <span>By</span>{' '}
-                                    <span>
-                                        {article.data?.authors
-                                            .map((author) => author.username)
-                                            .join(', ')}
-                                    </span>
-                                    <span>{formattedDate}</span>
+                            <div class="mb-2 md:flex items-center justify-between">
+                                <div class="pt-2 text-[#a2a8ad]">
+                                    <div class="flex gap-x-2">
+                                        <span>Written by:</span>{' '}
+                                        <span class="flex gap-x-2 capitalize">
+                                            {article.data?.authors.map((author) => (
+                                                <a href={`https://twitter.com/${author.twitter_username}`} target="_blank" class="underline underline-offset-2 transition duration-300 hover:text-green-900">
+                                                    {author.username}
+                                                </a>
+                                            ))}
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <span class="">{formattedDate}</span>
+                                    </div>
                                 </div>
 
                                 <div class="flex items-center gap-x-1">
@@ -197,3 +207,22 @@ const formattedDate = formatDate(created_at)
         </article>
     </main>
 </Layout>
+
+
+<style lang="scss">
+
+figure.image {
+    display: flex;
+    justify-content: center;
+}
+
+pre, code {
+    background-color: rgb(15, 15, 15);
+    //color: rgb(43, 101, 226);
+    //color: #96b950;
+    overflow-x: auto;
+    padding-block: .2rem;
+    padding-inline: .4rem;
+    border-radius: .4rem;
+}
+</style>

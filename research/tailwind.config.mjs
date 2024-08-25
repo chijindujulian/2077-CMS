@@ -30,6 +30,11 @@ export default {
             fontFamily: {
                 avenir: ['Avenir', 'sans-serif'],
             },
+            lineHeight: {
+                'extra-loose': '2.5',
+                'line-13': '13px',
+                17: '18px',
+            },
         },
     },
 }
