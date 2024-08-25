@@ -13,7 +13,10 @@ interface Category {
 interface ArticleData {
     id: string
     title: string
-    authors: { username: string }[]
+    authors: { 
+        username: string, 
+        twitter_username: string | null
+    }[]
     content: string
     views: string
     summary: string
@@ -99,14 +102,16 @@ const formattedDate = formatDate(created_at)
                             </div>
 
                             <div class="mb-2 md:flex items-center justify-between">
-                                <div class="transition duration-300 pt-2 hover:text-[#c6ff50] text-[#a2a8ad]">
-                                    <div class="">
+                                <div class="pt-2 text-[#a2a8ad]">
+                                    <div class="flex gap-x-2">
                                         <span>Written by:</span>{' '}
-                                    <span class="capitalize">
-                                        {article.data?.authors
-                                            .map((author) => author.username)
-                                            .join(', ')}
-                                    </span>
+                                        <span class="flex gap-x-2 capitalize">
+                                            {article.data?.authors.map((author) => (
+                                                <a href={`https://twitter.com/${author.twitter_username}`} target="_blank" class="underline underline-offset-2 transition duration-300 hover:text-green-900">
+                                                    {author.username}
+                                                </a>
+                                            ))}
+                                        </span>
                                     </div>
 
                                     <div>
